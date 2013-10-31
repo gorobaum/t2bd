@@ -34,7 +34,17 @@ Email: thiago.gouveia.nunes@gmail.com}
   \subsection{Trabalhos científicos}
     \subsubsection{Passar word do caio (Caio)}
 
-    \subsubsection{E resumir artigo no email (Manzo)}
+    \subsubsection{\textit{Toward an Active Database Platform for Guiding Urban Pedestrians}}
+    Utilizando a extensão \textit{PotsGIS} do sistema gerenciador de banco de dados (SGBD) PostgreSQL, que adiciona a capacidade de um tipo de dado para posição geográfica, este estudo da Universidade de Ume\r{a} na Suécia através do uso extensivo de \textit{stored procedures} foi capaz fornercer instruções de direção a fim de guiar um pedestre em um trajeto.
+
+    Este banco de dados foi modelado para centralizar todos o estado do sistema como descrição dos mapas, posições do usuário, rotas e registro dos avisos enviados ao usuário. São basicamente quatro relações: \textit{PathNetwork}; \textit{Landmarks}; \textit{Routes}; e \textit{Pedestrian}.
+
+    O primeiro uso de banco de dados ativo citado, é quando uma nova medição de \textit{GPS} é adicionada à base de dados, é disparado um \textit{trigger} que por sua vez executa uma \textit{stored procedure} que atualiza o estado do pedestre. Este tipo de ação é executado com alta ferquência (uma vez por segundo).
+
+    Esta modificações no estado do pedestre então podem desencadear outras regras para decidir quando enviar avisos sonoros ao pedestre, corrigir a rota quando o usuário sai do planejado, informar a distância restante e até mesmo encorajá-lo em sua caminhada. Tudo programada com \textit{triggers} e \textit{stored procedures}.
+
+    Por outro lado, muitos destes eventos podem acontecer simultâneamente e para evitar que diversos avisos sejam disparados ao mesmo tempo, foi criada uma regra na inclusão da relação de avisos.
+
   \subsection{Ferramentas}
   Tabela comparativa (arrumar célula F20, tirar function e procedure, filtrar só os principais bancos) (Gordo)
 
