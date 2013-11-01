@@ -32,7 +32,117 @@ Email: thiago.gouveia.nunes@gmail.com}
 
 \section{Estado da arte}
   \subsection{Trabalhos científicos}
-    \subsubsection{Passar word do caio (Caio)}
+    \subsubsection{Practical Applications of Triggers and Constraints: Successes and Lingering Issues}
+    O artigo “Practical Applications of Triggers and Constraints: Successes and Lingering Issues” faz uma breve revisão sobre restrições e triggers, descreve dois métodos diferentes para agrupamento e comenta um pouco sobre os problemas e vantagens relacionados ao uso seu uso.
+
+    Triggers são baseadas no modelo ECA (Event Condition Action), quando um evento ocorre e alguma condição associada é verdadeira, executamos uma ação. Em relação ao seu comportamento, podemos definir muitas coisas como, sua granularidade, o trigger age em nível de linha ou tabela, a ordem da ação, ou seja se a ação deve ser executada antes, depois ou ao invés do evento que o disparou. As condições e funções são definidas arbitrariamente. Note que podemos utilizar os valores que existiam antes do evento ser disparado e depois.
+
+    Triggers surgiram como uma forma de reação automática a violações de restrições de integridade, e logo foram generalizados para realização de outras tarefas, se tornando o modelo ECA que temos hoje. Os primeiros produtos que suportavam triggers surgiram no começo da década de 90, hoje em dia todos os vendedores de SGBDs relacionais tem suporte a triggers.
+
+    Triggers podem ser classificados da seguinte maneira:
+
+    \begin{table}[H]
+        \begin{tabular}{p{8cm}p{8cm}p{8cm}p{8cm}}
+            \vspace{0pt}
+            \vspace{0pt}
+            DBMS Kernel
+            \vspace{0pt}
+            DBMS Services
+            \vspace{0pt}
+            External Applications
+        \end{tabular}
+        \begin{tabular}{p{8cm}p{8cm}p{8cm}p{8cm}}
+            \vspace{0pt}
+            Handcrafted
+            \vspace{0pt}
+            Gerenciamento de metadados, auditoria interna
+            \vspace{0pt}
+            NA
+            \vspace{0pt}
+            Regras de negócio, Escalonamento, Gerenciamento de “cadeia de suprimentos”
+        \end{tabular}
+        \begin{tabular}{p{8cm}p{8cm}p{8cm}p{8cm}}
+            \vspace{0pt}
+            Generated
+            \vspace{0pt}
+            Integridade referencial, materialized views
+            \vspace{0pt}
+            Replicação, Extenders, Auditoria, Migração, Alertas
+            \vspace{0pt}
+            Gerenciamento de Workflow
+        \end{tabular}
+    \end{table}
+
+    \begin{itemize}
+        \item{Handcrafted}: São triggers criados por algum programador.
+        \item{Generated}: Triggers gerados automaticamente
+        \item{Kernel}: Triggers escritos no Kernel, para não esbarrar em problemas de segurança ou então melhorar a performance
+        \item{Services}: Serviços que tem como proposito prover ou melhorar alguma funcionalidade do SGBD
+        \item{External}: Estão fora do banco de dados, fazem acesso ou se comunicam por meio de alguma API
+    \end{itemize}
+
+
+    Podemos ainda classificar os triggers em relação a sua função:
+    \begin{table}[H]
+        \begin{tabular}{p{8cm}p{8cm}p{8cm}}
+            \vspace{0pt}
+           Triggers que preservam restrições
+            \vspace{0pt}
+           Rollback caso as restrições sejam invalidadas
+        \end{tabular}
+        \begin{tabular}{p{8cm}p{8cm}p{8cm}}
+            \vspace{0pt}
+            Triggers que preservam restrições
+            \vspace{0pt}
+           Altera o valor para se conformar as restrições
+        \end{tabular}
+        \begin{tabular}{p{8cm}p{8cm}p{8cm}}
+            \vspace{0pt}
+            Triggers que sinalizam violações de restrições
+            \vspace{0pt}
+           Sinaliza para a aplicação, que deverá cuidar do problema
+        \end{tabular}
+        \begin{tabular}{p{8cm}p{8cm}p{8cm}}
+            \vspace{0pt}
+            Materializing Trigger
+            \vspace{0pt}
+           Mantêm a consistência da materialized view
+        \end{tabular}
+        \begin{tabular}{p{8cm}p{8cm}p{8cm}}
+            \vspace{0pt}
+           Metadata Trigger
+            \vspace{0pt}
+           Mantêm a consistencia dos metadados
+        \end{tabular}
+        \begin{tabular}{p{8cm}p{8cm}p{8cm}}
+            \vspace{0pt}
+           Replication Trigger
+            \vspace{0pt}
+           Mantêm a consistencia de dados replicados de uma tabela para outra
+        \end{tabular}
+        \begin{tabular}{p{8cm}p{8cm}p{8cm}}
+            \vspace{0pt}
+           Extenders
+            \vspace{0pt}
+           Gerencia novos tipos de dados e os mantêm consistentes com o banco de dados.
+        \end{tabular}
+        \begin{tabular}{p{8cm}p{8cm}p{8cm}}
+            \vspace{0pt}
+           Alerter
+            \vspace{0pt}
+           Notifica o usuário via manesagens
+        \end{tabular}
+        \begin{tabular}{p{8cm}p{8cm}p{8cm}}
+            \vspace{0pt}
+            Ad-Hoc Trigger
+            \vspace{0pt}
+            São triggers especificos para cada aplicação -> Regras de negócio, workflow, web, etc.
+        \end{tabular}
+    \end{table}
+
+    A grande vantagem do uso de triggers é a possibilidade de mover a lógica e regras de negócio da aplicação para o banco de dados.
+Algumas das reclamações estão relacionadas a expressividade dos triggers. Há certos problemas de padronização, comportamentos particulares de cada SGBD podem ter grande impacto nos resultados finais. Além disso não há falta de ferramentas que ajudem na análise de triggers, esse é um dos motivos que levou o crescimento de triggers gerados automaticamente. Muitos triggers, ou triggers complexos deterioram muito a performance.
+
 
     \subsubsection{\textit{Toward an Active Database Platform for Guiding Urban Pedestrians}}
     Utilizando a extensão \textit{PotsGIS} do sistema gerenciador de banco de dados (SGBD) PostgreSQL, que adiciona a capacidade de um tipo de dado para posição geográfica, este estudo da Universidade de Ume\r{a} na Suécia através do uso extensivo de \textit{stored procedures} foi capaz fornercer instruções de direção a fim de guiar um pedestre em um trajeto.
