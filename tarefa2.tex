@@ -164,7 +164,10 @@ Algumas das reclamações estão relacionadas a expressividade dos triggers. Há
     \subsubsection{MySQL (Gabriel)}
 
   \subsection{Cenário (Gabriel)}
-  Escrever cenários (no email)
+    \subsubsection{O Problema}
+	Ao se deparar com a criação de um sistema web o qual realizaria a venda de papel moeda e cartões pré-pagos internacionais pela internet, tevesse que pensar em como fazer a atualização das taxas de moedas , a partir de um serviço externo, a serem vendidas com atualizações periódicas.
+    \subsubsection{A Solução}
+	Para que toda vez que o usuário solicitasse uma cotação de uma taxa de uma moeda não fosse necessário o acesso ao serviço externo foi pensado em uma solução utilizando banco de dados ativo para que de tempos em tempos fosse atualizado uma tabela com a últimas cotações das moedas, assim ao usuário solicitar uma taxa de uma moeda não seria necessário o acesso a um serviço externo, mas apeas uma consulta ao banco de dados do sistema.
 
   \subsection{Modelagens}
     \subsubsection{SQLServer (Caio e Gabriel)}
