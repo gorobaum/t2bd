@@ -162,25 +162,33 @@ Emails: \IEEEauthorrefmark{3}manzo@ime.usp.br, \IEEEauthorrefmark{4}thiago.gouve
 \section{Estudo de caso}
   \subsection{Características técnicas}
     \subsubsection{SQLServer (Gabriel)}
+O MS SQL Server é um SGBD - sistema gerenciador de Banco de dados relacional desenvolvido pela Microsoft. Foi criado em parceria com a Sybase em 1988 inicialmente para a plataforma OS/21 . Esta parceria durou até 1994, com o lançamento da versão para Windows NT e desde então a Microsoft mantém a manutenção do produto. O SQL não é Open Source e para utilizar o SQL Server é necessário comprar uma versão da Microsoft. Suas linguagens de consulta primárias são T-SQL e ANSI SQL.\\
+	O SQL Server tem como principais características:
+\begin{itemize}
+\item Funciona no sistema operacional Windows
+\item Tem como tamanho máximo de banco de dados como 524 TB  e tamanho máximo de tabela como 524 TB
+\item Suporte a multi-threads
+\item A interface Connector/ODBC fornece ao SQL Server suporte a programas clientes que usam conexão ODBC (Open-DataBase-Connectivity).
+\item Suporte nativo ao XML
+\item Suporte a internacionalização
+\item Suporte a Data Warehouse
+\end{itemize}
+
     \subsubsection{MySQL (Gabriel)}
-	MySQL é o mais popular sistema de gerenciamento de banco de dados SQL Open Source, é desenvolvido, distribuído e tem suporte da MySQL AB. A MySQL AB é uma empresa comercial, fundada pelos desenvolvedores do MySQL, cujos negócios é fornecer serviços relacionados ao sistema de gerenciamento de banco de dados MySQL
+	MySQL é o mais popular sistema de gerenciamento de banco de dados SQL Open Source, é desenvolvido, distribuído e tem suporte da MySQL AB. A MySQL AB é uma empresa comercial, fundada pelos desenvolvedores do MySQL, cujos negócios é fornecer serviços relacionados ao sistema de gerenciamento de banco de dados MySQL\\
 	O MySQL tem como principais características:
 \begin{itemize}
 \item Escrito em C e C++.
-\item Testado com um amplo faixa de compiladores diferentes.
 \item Funciona em diversas plataformas, como Windows, Linux 2.0+, OpenBSD, FreeBSD, SunOS 4.x e outros
 \item Utiliza o GNU Automake, Autoconf, e Libtool para portabilidade.
 \item Suporte total a multi-threads usando threads diretamente no kernel. Isto significa que se pode facilmente usar múltiplas CPUs, se disponível.
-\item O código do MySQL foi testado com Purify (um detector comercial de falhas de memória) e também com o Valgrind, uma ferramenta GPL (http://developer.kde.org/~sewardj/).
 \item Completo suporte a operadores e funções da linguagem SQL para consultas e funções
 \item Um sistema de privilégios e senhas que é muito flexível, seguro e que permite verificação baseada em estações/máquinas. Senhas são seguras porque todo o tráfico de senhas é criptografado quando você se conecta ao servidor.
-\item Lida com bancos de dados enormes. Usamos o Servidor MySQL com bancos de dados que contém 50.000.000 registros e sabemos de usuários que usam o Servidor MySQL com 60.000 tabelas e aproximadamente 5.000.000.000 de linhas.
-\item São permitidos até 32 índices por tabela. Cada índice pode ser composto de 1 a 16 colunas ou partes de colunas. O tamanho máximo do índice é de 500 bytes (isto pode ser alterado na compilação do MySQL). 
 \item Os clientes podem se conectar ao servidor MySQL usando sockets TCP/IP, em qualquer plataforma.
-\item A interface Connector/ODBC fornece ao MySQL suporte a progras clientes que usam conexão ODBC (Open-DataBase-Connectivity). 
+\item A interface Connector/ODBC fornece ao MySQL suporte a programas clientes que usam conexão ODBC (Open-DataBase-Connectivity). 
 \item O servidor pode apresentar mensagem de erros aos clientes em várias línguas. 
 \item Suporte total para vários conjuntos de caracteres, que incluem ISO-8859-1 (Latin1), big5, ujis e mais.
-\item
+\item Tem como tamanho máximo de banco de dados como ilimitado e tamanho máximo de tabela como 256 TB
 \end{itemize}
 
 
@@ -223,6 +231,8 @@ Emails: \IEEEauthorrefmark{3}manzo@ime.usp.br, \IEEEauthorrefmark{4}thiago.gouve
 M. Minock, J. Mollevik and M. \r{A}sander, \textit{Toward an Active Database Platform for Guiding Urban Pedestrians}. Ume\r{a}, Sweden: University of Ume\r{a}, 2012.
 \bibitem{mysql-site}
 http://ftp.nchu.edu.tw/MySQL/doc/refman/4.1/pt/
+\bibitem{sql-server-site}
+http://msdn.microsoft.com/en-us/library/cc645993.aspx
 \end{thebibliography}
 
 \end{document}
