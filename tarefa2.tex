@@ -9,7 +9,7 @@
 
 \begin{document}
 
-\title{Análise prática sobre estado atual dos bancos de dados ativos}
+\title{Panorama prático sobre estado atual dos bancos de dados ativos}
 
 \author{\IEEEauthorblockN{Caio de freitas Valente\IEEEauthorrefmark{1}, Gabriel Reganati\IEEEauthorrefmark{2},  Rafael Reggiani Manzo\IEEEauthorrefmark{3}, Thiago de Gouveia Nunes\IEEEauthorrefmark{4}}
 \IEEEauthorblockA{Instituto de Matemática e Estatística\\
@@ -171,18 +171,24 @@ Emails: \IEEEauthorrefmark{3}manzo@ime.usp.br, \IEEEauthorrefmark{4}thiago.gouve
     \subsubsection{A Solução}
     Para que a cada requisição de um usuário pela taxa de câmbio de uma moeda não resulte em uma requisição deste tipo para um serviço externo, foi pensada uma tabela de \textit{cache} para as cotações que por é atualizada por meio de regras ativas. Assim, ao invés de acessar um serviço externo, a operação de obter a taxa de câmbio consiste de uma simples consulta a tabela.
 
-  \subsection{Descição dos testes (Manzo)}
+  \subsection{Descição dos testes}
+  A fim de aferir as capacidades dos SGBDs SQLServer e MySQL quanto a utilização de regras ativas, e tendo em mente o cenário anteriormente descrito, foram elaborados dois casos de teste a serem realizados em ambas os sistemas:
+
+  \begin{enumerate}
+    \item Execução periódica de uma regra para atualizar as informações sobre taxa de câmbio;
+    \item Invalidãção de compras realizadas há mais de dois dias.
+  \end{enumerate}
 
   \subsection{Modelagens}
     \subsubsection{SQLServer (Caio e Gabriel)}
     \subsubsection{MySQL}
     Para os testes com o SGBD MySQL, foi adotada a seguinte modelagem com quatro relações: Boleto; Cambio; Taxa; e Moeda.
 
-    A relação Boleto representa uma operação de compra realizada, contendo os atributos id, data, pago (booleano), valor e id_cambio.
+    A relação Boleto representa uma operação de compra realizada, contendo os atributos id, data, pago (booleano), valor e id\_cambio.
 
-    Por sua vez a relação Cambio representa as taxas do dia de uma dada moeda para outra com atributos id, id_taxa_origem, id_taxa_destino.
+    Por sua vez a relação Cambio representa as taxas do dia de uma dada moeda para outra com atributos id, id\_taxa\_origem, id\_taxa\_destino.
 
-    Assim como deve ter sido possível inferir pelo nome, a relação Taxa, com atributos id, data, id_moeda e valor, representa uma taxa de conversão para uma dada moeda em uma dada data.
+    Assim como deve ter sido possível inferir pelo nome, a relação Taxa, com atributos id, data, id\_moeda e valor, representa uma taxa de conversão para uma dada moeda em uma dada data.
 
     Por fim, a relação Moeda contém apenas o nome desta e sua id.
 
