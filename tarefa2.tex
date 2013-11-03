@@ -163,13 +163,33 @@ Emails: \IEEEauthorrefmark{3}manzo@ime.usp.br, \IEEEauthorrefmark{4}thiago.gouve
   \subsection{Características técnicas}
     \subsubsection{SQLServer (Gabriel)}
     \subsubsection{MySQL (Gabriel)}
+	MySQL é o mais popular sistema de gerenciamento de banco de dados SQL Open Source, é desenvolvido, distribuído e tem suporte da MySQL AB. A MySQL AB é uma empresa comercial, fundada pelos desenvolvedores do MySQL, cujos negócios é fornecer serviços relacionados ao sistema de gerenciamento de banco de dados MySQL
+	O MySQL tem como principais características:
+\begin{itemize}
+\item Escrito em C e C++.
+\item Testado com um amplo faixa de compiladores diferentes.
+\item Funciona em diversas plataformas, como Windows, Linux 2.0+, OpenBSD, FreeBSD, SunOS 4.x e outros
+\item Utiliza o GNU Automake, Autoconf, e Libtool para portabilidade.
+\item Suporte total a multi-threads usando threads diretamente no kernel. Isto significa que se pode facilmente usar múltiplas CPUs, se disponível.
+\item O código do MySQL foi testado com Purify (um detector comercial de falhas de memória) e também com o Valgrind, uma ferramenta GPL (http://developer.kde.org/~sewardj/).
+\item Completo suporte a operadores e funções da linguagem SQL para consultas e funções
+\item Um sistema de privilégios e senhas que é muito flexível, seguro e que permite verificação baseada em estações/máquinas. Senhas são seguras porque todo o tráfico de senhas é criptografado quando você se conecta ao servidor.
+\item Lida com bancos de dados enormes. Usamos o Servidor MySQL com bancos de dados que contém 50.000.000 registros e sabemos de usuários que usam o Servidor MySQL com 60.000 tabelas e aproximadamente 5.000.000.000 de linhas.
+\item São permitidos até 32 índices por tabela. Cada índice pode ser composto de 1 a 16 colunas ou partes de colunas. O tamanho máximo do índice é de 500 bytes (isto pode ser alterado na compilação do MySQL). 
+\item Os clientes podem se conectar ao servidor MySQL usando sockets TCP/IP, em qualquer plataforma.
+\item A interface Connector/ODBC fornece ao MySQL suporte a progras clientes que usam conexão ODBC (Open-DataBase-Connectivity). 
+\item O servidor pode apresentar mensagem de erros aos clientes em várias línguas. 
+\item Suporte total para vários conjuntos de caracteres, que incluem ISO-8859-1 (Latin1), big5, ujis e mais.
+\item
+\end{itemize}
+
 
   \subsection{Cenário}
-    \subsubsection{O Problema}
-    Ao se deparar com a criação de um sistema web o qual realizaria a venda de papel moeda e cartões pré-pagos internacionais pela internet, teve-se que pensar em como fazer a atualização das taxas de moedas a serem vendidas a partir de um serviço externo com atualizações periódicas, que consistem de chamadas bastante demoradas tanto pelo volume de dados quanto pelo tempo de resposta do serviço externo.
+    \subsubsection{O Problema} Ao se deparar com a criação de um sistema web o qual realizaria a venda de papel moeda e cartões pré-pagos internacionais pela internet, teve-se que pensar em como fazer a atualização das taxas de moedas a serem vendidas a partir de um serviço externo com atualizações periódicas, que consistem de chamadas bastante demoradas tanto pelo volume de dados quanto pelo tempo de resposta do serviço externo.\\
+    Além disso a compra de cambio apresenta uma validade de 2 dias, portanto o banco de dados deveria ser possível cancelar a compra caso não fosse efetuada no período de dois dias.
 
-    \subsubsection{A Solução}
-    Para que a cada requisição de um usuário pela taxa de câmbio de uma moeda não resulte em uma requisição deste tipo para um serviço externo, foi pensada uma tabela de \textit{cache} para as cotações que por é atualizada por meio de regras ativas. Assim, ao invés de acessar um serviço externo, a operação de obter a taxa de câmbio consiste de uma simples consulta a tabela.
+    \subsubsection{A Solução} Para que a cada requisição de um usuário pela taxa de câmbio de uma moeda não resulte em uma requisição deste tipo para um serviço externo, foi pensada uma tabela de \textit{cache} para as cotações que por é atualizada por meio de regras ativas. Assim, ao invés de acessar um serviço externo, a operação de obter a taxa de câmbio consiste de uma simples consulta a tabela.\\
+    Com o intuito de solucionar o problema da validade foram feitas triggers que façam esse tipo de análise e assim trocando validando ou não a compra.
 
   \subsection{Descição dos testes}
   A fim de aferir as capacidades dos SGBDs SQLServer e MySQL quanto a utilização de regras ativas, e tendo em mente o cenário anteriormente descrito, foram elaborados dois casos de teste a serem realizados em ambas os sistemas:
@@ -201,7 +221,8 @@ Emails: \IEEEauthorrefmark{3}manzo@ime.usp.br, \IEEEauthorrefmark{4}thiago.gouve
 
 \bibitem{sweedish-article}
 M. Minock, J. Mollevik and M. \r{A}sander, \textit{Toward an Active Database Platform for Guiding Urban Pedestrians}. Ume\r{a}, Sweden: University of Ume\r{a}, 2012.
-
+\bibitem{mysql-site}
+http://ftp.nchu.edu.tw/MySQL/doc/refman/4.1/pt/
 \end{thebibliography}
 
 \end{document}
