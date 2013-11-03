@@ -4,6 +4,8 @@
 \usepackage[brazil]{babel}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
+\usepackage[pdftex]{graphicx}
+\usepackage{hyperref}
 \hyphenation{op-tical net-works semi-conduc-tor}
 
 
@@ -158,6 +160,53 @@ Emails: \IEEEauthorrefmark{3}manzo@ime.usp.br, \IEEEauthorrefmark{4}thiago.gouve
 
   \subsection{Ferramentas}
   Tabela comparativa (arrumar célula F20, tirar function e procedure, filtrar só os principais bancos) (Gordo)
+  \begin{table*}[!t]
+    \renewcommand{\arraystretch}{1}
+    \caption{Tabela de Ferramentas}
+    \label{table_example}
+    \centering
+    \begin{tabular}{ c  c  c  c  c  c }
+      \hline
+      \bfseries Nome & \bfseries Trigger & \bfseries Primeiro release & \bfseries Última versão estável & \bfseries Último release & \bfseries Licensa \\
+      \hline
+      Apache Derby & Sim & 2004 & 10.10.1.1 & 2013 & Apache License \\
+      \hline
+      DB2 & Sim & 1983 & 10.5 & 2013 & Proprietária \\
+      \hline
+      H2 & Sim & 2005 & 1.3.171 & 2013 & EPL e modificação da MPL \\
+      \hline
+      HSQLDB & Sim & 2001 & 2.2.9 & 2013 & BSD \\
+      \hline
+      Microsoft Access (NET) & Não & 1992 & 15 & 2012 & Proprietária \\
+      \hline
+      Microsoft Azure SQL & Sim & 2010 & & 2012 & Proprietária \\
+      \hline
+      Microsoft SQL Server & Sim & 1989 & 2012 &  &  Proprietária \\
+      \hline
+      Microsoft SQL Server Compact (Embedded Database) & Não & 2000 & 2011 & & Proprietária \\
+      \hline
+      MonetDB & Sim & 2004 & 11.9.1 & 2012 & MonetDB Public License v1.1 \\
+      \hline
+      MongoDB & Não & 2009 & 2.4.6 & 2013 & GNU AGPL v3.0 \\
+      \hline
+      MySQL & Sim & 1995 & 5.6.31 & 2013 & GPL ou Proprietária\\
+      \hline
+      Oracle & Sim & 1979 & 12c Release 1 & 2013 & Proprietária\\
+      \hline
+      Oracle Rdb  & Sim & 1984 & 7.2.5.3.0 & 2013 & Proprietária\\
+      \hline
+      PostgreSQL & Sim & 1989 & 9.3.1 & 2013 & PostgreSQL Licence (a liberal Open Source license) \\
+      \hline
+      RDM Embedded & Não & 1984 & 11.0 & 2012 & Proprietária \\
+      \hline
+      RDM Server & Sim & 1993 & 8.4 & 2012 & Proprietária \\
+      \hline
+      SQLite & Sim & 1905 & 3.8.0.2 & 2013 & Dominio Público \\
+      \hline
+      Xeround Cloud Database & Sim & 2010 & 3.1 & 2011 & SaaS \\
+      \hline
+    \end{tabular}
+  \end{table*}
 
 \section{Estudo de caso}
   \subsection{Características técnicas}
@@ -208,7 +257,6 @@ O MS SQL Server é um SGBD - sistema gerenciador de Banco de dados relacional de
   \end{enumerate}
 
   \subsection{Modelagens}
-    \subsubsection{SQLServer (Caio e Gabriel)}
     \subsubsection{MySQL}
     Para os testes com o SGBD MySQL, foi adotada a seguinte modelagem com quatro relações: Boleto; Cambio; Taxa; e Moeda.
 
@@ -220,10 +268,21 @@ O MS SQL Server é um SGBD - sistema gerenciador de Banco de dados relacional de
 
     Por fim, a relação Moeda contém apenas o nome desta e sua id.
 
-  \subsection{Resultados}
-    \subsubsection{SQLServer (Caio e Gabriel)}
-    \subsubsection{MySQL (Manzo \& Gordo)}
 
+
+    \subsubsection{SQLServer (Caio e Gabriel)}
+	Usamos a ferramenta SQL Server Management Studio para trabalhar com SQL Server.			
+	Decidimos seguir o mesmo padrão usado na resolução do problema com MySQL, segue o diagrama das tabelas:
+ 
+	\includegraphics[scale=0.7]{img/tabela.jpg} 
+
+	Em seguida desenvolvemos uma aplicação web que a partir do nome de uma moeda busca no Google a taxa de cambio em relação ao Real. Esse valor já parseado é retornado. Segue o link:\\ \\
+	\href{http://trabalho2db.azurewebsites.net/Currency/Get?exchangeRate=}{http://trabalho2db.azurewebsites.net/Currency/Get?exchangeRate=} \\ \\
+	Exemplo de uso:\href{http://trabalho2db.azurewebsites.net/Currency/Get?exchangeRate=USD}{http://trabalho2db.azurewebsites.net/Currency/Get?exchangeRate=USD} \\ \\
+
+  \subsection{Resultados}
+    \subsubsection{MySQL (Manzo \& Gordo)}
+    \subsubsection{SQLServer (Caio e Gabriel)}
 
 \begin{thebibliography}{1}
 
