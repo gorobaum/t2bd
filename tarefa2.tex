@@ -11,11 +11,11 @@
 
 \title{Análise prática sobre estado atual dos bancos de dados ativos}
 
-\author{\IEEEauthorblockN{Caio de freitas Valente, Gabriel Reganati,  Rafael Reggiani Manzo, Thiago de Gouveia Nunes}
+\author{\IEEEauthorblockN{Caio de freitas Valente\IEEEauthorrefmark{1}, Gabriel Reganati\IEEEauthorrefmark{2},  Rafael Reggiani Manzo\IEEEauthorrefmark{3}, Thiago de Gouveia Nunes\IEEEauthorrefmark{4}}
 \IEEEauthorblockA{Instituto de Matemática e Estatística\\
 Universidade de São Paulo\\
 São Paulo, São Paulo\\
-Email: thiago.gouveia.nunes@gmail.com}
+Emails: \IEEEauthorrefmark{3}manzo@ime.usp.br, \IEEEauthorrefmark{4}thiago.gouveia.nunes@gmail.com}
 }
 
 \maketitle
@@ -45,7 +45,7 @@ Email: thiago.gouveia.nunes@gmail.com}
         \begin{tabular}{p{8cm}p{8cm}p{8cm}p{8cm}}
             \vspace{0pt}
             \vspace{0pt}
-            DBMS Kernel
+             DBMS Kernel
             \vspace{0pt}
             DBMS Services
             \vspace{0pt}
@@ -80,7 +80,6 @@ Email: thiago.gouveia.nunes@gmail.com}
         \item{Services}: Serviços que tem como proposito prover ou melhorar alguma funcionalidade do SGBD
         \item{External}: Estão fora do banco de dados, fazem acesso ou se comunicam por meio de alguma API
     \end{itemize}
-
 
     Podemos ainda classificar os triggers em relação a sua função:
     \begin{table}[H]
@@ -141,19 +140,21 @@ Email: thiago.gouveia.nunes@gmail.com}
     \end{table}
 
     A grande vantagem do uso de triggers é a possibilidade de mover a lógica e regras de negócio da aplicação para o banco de dados.
-Algumas das reclamações estão relacionadas a expressividade dos triggers. Há certos problemas de padronização, comportamentos particulares de cada SGBD podem ter grande impacto nos resultados finais. Além disso não há falta de ferramentas que ajudem na análise de triggers, esse é um dos motivos que levou o crescimento de triggers gerados automaticamente. Muitos triggers, ou triggers complexos deterioram muito a performance.
 
+    Algumas das reclamações estão relacionadas a expressividade dos triggers. Há certos problemas de padronização, comportamentos particulares de cada SGBD podem ter grande impacto nos resultados finais. Além disso não há falta de ferramentas que ajudem na análise de triggers, esse é um dos motivos que levou o crescimento de triggers gerados automaticamente. Muitos triggers, ou triggers complexos deterioram muito a performance.
 
     \subsubsection{\textit{Toward an Active Database Platform for Guiding Urban Pedestrians}}
-    Utilizando a extensão \textit{PotsGIS} do sistema gerenciador de banco de dados (SGBD) PostgreSQL, que adiciona a capacidade de um tipo de dado para posição geográfica, este estudo da Universidade de Ume\r{a} na Suécia através do uso extensivo de \textit{stored procedures} foi capaz fornercer instruções de direção a fim de guiar um pedestre em um trajeto.
+    Utilizando a extensão \textit{PotsGIS} do sistema gerenciador de banco de dados (SGBD) PostgreSQL, que adiciona a capacidade de um tipo de dado para posição geográfica, este estudo da Universidade de Ume\r{a} na Suécia de autoria de Michael Minock, Johan Mollevik and Mattias \r{A}sander, através do uso extensivo de \textit{stored procedures} foi capaz de fornercer instruções de direção a fim de guiar um pedestre em um trajeto.
 
-    Este banco de dados foi modelado para centralizar todos o estado do sistema como descrição dos mapas, posições do usuário, rotas e registro dos avisos enviados ao usuário. São basicamente quatro relações: \textit{PathNetwork}; \textit{Landmarks}; \textit{Routes}; e \textit{Pedestrian}.
+    Este banco de dados foi modelado para centralizar todo o estado do sistema como descrição dos mapas, posições do usuário, rotas e registro dos avisos enviados ao usuário. São basicamente quatro relações: \textit{PathNetwork}; \textit{Landmarks}; \textit{Routes}; e \textit{Pedestrian}.
 
-    O primeiro uso de banco de dados ativo citado, é quando uma nova medição de \textit{GPS} é adicionada à base de dados, é disparado um \textit{trigger} que por sua vez executa uma \textit{stored procedure} que atualiza o estado do pedestre. Este tipo de ação é executado com alta ferquência (uma vez por segundo).
+    O primeiro uso de banco de dados ativo citado, é quando uma nova medição de \textit{GPS} é adicionada à base de dados, é disparado um \textit{trigger} que por sua vez executa uma \textit{stored procedure} que atualiza o estado do pedestre. Este tipo de ação é executado com alta frequência (uma vez por segundo).
 
-    Esta modificações no estado do pedestre então podem desencadear outras regras para decidir quando enviar avisos sonoros ao pedestre, corrigir a rota quando o usuário sai do planejado, informar a distância restante e até mesmo encorajá-lo em sua caminhada. Tudo programada com \textit{triggers} e \textit{stored procedures}.
+    Estas modificações no estado do pedestre então podem desencadear outras regras para decidir quando enviar avisos sonoros ao pedestre, corrigir a rota quando o usuário sai do planejado, informar a distância restante e até mesmo encorajá-lo em sua caminhada. Tudo programado com \textit{triggers} e \textit{stored procedures}.
 
     Por outro lado, muitos destes eventos podem acontecer simultâneamente e para evitar que diversos avisos sejam disparados ao mesmo tempo, foi criada uma regra na inclusão da relação de avisos.
+
+    Esta implementação obteve boa performance com atraso de resposta médio de 60ms. Quanto à precisão da navegação, os autores foram sinceros em dizer que ainda não está tão preciso quanto soluções a soluções de navegação comerciais. Mas também apontou quais pontos precisam ser melhorados para chegar a este ponto.
 
   \subsection{Ferramentas}
   Tabela comparativa (arrumar célula F20, tirar function e procedure, filtrar só os principais bancos) (Gordo)
@@ -182,9 +183,8 @@ Algumas das reclamações estão relacionadas a expressividade dos triggers. Há
 
 \begin{thebibliography}{1}
 
-\bibitem{IEEEhowto:kopka}
-H.~Kopka and P.~W. Daly, \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
-  0.5em minus 0.4em\relax Harlow, England: Addison-Wesley, 1999.
+\bibitem{sweedish-article}
+M. Minock, J. Mollevik and M. \r{A}sander, \textit{Toward an Active Database Platform for Guiding Urban Pedestrians}. Ume\r{a}, Sweden: University of Ume\r{a}, 2012.
 
 \end{thebibliography}
 
