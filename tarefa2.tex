@@ -4,6 +4,8 @@
 \usepackage[brazil]{babel}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
+\usepackage[pdftex]{graphicx}
+\usepackage{hyperref}
 \hyphenation{op-tical net-works semi-conduc-tor}
 
 
@@ -247,7 +249,6 @@ Emails: \IEEEauthorrefmark{3}manzo@ime.usp.br, \IEEEauthorrefmark{4}thiago.gouve
   \end{enumerate}
 
   \subsection{Modelagens}
-    \subsubsection{SQLServer (Caio e Gabriel)}
     \subsubsection{MySQL}
     Para os testes com o SGBD MySQL, foi adotada a seguinte modelagem com quatro relações: Boleto; Cambio; Taxa; e Moeda.
 
@@ -259,10 +260,21 @@ Emails: \IEEEauthorrefmark{3}manzo@ime.usp.br, \IEEEauthorrefmark{4}thiago.gouve
 
     Por fim, a relação Moeda contém apenas o nome desta e sua id.
 
-  \subsection{Resultados}
-    \subsubsection{SQLServer (Caio e Gabriel)}
-    \subsubsection{MySQL (Manzo \& Gordo)}
 
+
+    \subsubsection{SQLServer (Caio e Gabriel)}
+	Usamos a ferramenta SQL Server Management Studio para trabalhar com SQL Server.			
+	Decidimos seguir o mesmo padrão usado na resolução do problema com MySQL, segue o diagrama das tabelas:
+ 
+	\includegraphics[scale=0.7]{img/tabela.jpg} 
+
+	Em seguida desenvolvemos uma aplicação web que a partir do nome de uma moeda busca no Google a taxa de cambio em relação ao Real. Esse valor já parseado é retornado. Segue o link:\\ \\
+	\href{http://trabalho2db.azurewebsites.net/Currency/Get?exchangeRate=}{http://trabalho2db.azurewebsites.net/Currency/Get?exchangeRate=} \\ \\
+	Exemplo de uso:\href{http://trabalho2db.azurewebsites.net/Currency/Get?exchangeRate=USD}{http://trabalho2db.azurewebsites.net/Currency/Get?exchangeRate=USD} \\ \\
+
+  \subsection{Resultados}
+    \subsubsection{MySQL (Manzo \& Gordo)}
+    \subsubsection{SQLServer (Caio e Gabriel)}
 
 \begin{thebibliography}{1}
 
