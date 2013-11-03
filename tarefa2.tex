@@ -171,11 +171,20 @@ Emails: \IEEEauthorrefmark{3}manzo@ime.usp.br, \IEEEauthorrefmark{4}thiago.gouve
     \subsubsection{A Solução}
     Para que a cada requisição de um usuário pela taxa de câmbio de uma moeda não resulte em uma requisição deste tipo para um serviço externo, foi pensada uma tabela de \textit{cache} para as cotações que por é atualizada por meio de regras ativas. Assim, ao invés de acessar um serviço externo, a operação de obter a taxa de câmbio consiste de uma simples consulta a tabela.
 
+  \subsection{Descição dos testes (Manzo)}
+
   \subsection{Modelagens}
     \subsubsection{SQLServer (Caio e Gabriel)}
-    \subsubsection{MySQL (Manzo \& Gordo)}
+    \subsubsection{MySQL}
+    Para os testes com o SGBD MySQL, foi adotada a seguinte modelagem com quatro relações: Boleto; Cambio; Taxa; e Moeda.
 
-  \subsection{Descição dos testes (Manzo)}
+    A relação Boleto representa uma operação de compra realizada, contendo os atributos id, data, pago (booleano), valor e id_cambio.
+
+    Por sua vez a relação Cambio representa as taxas do dia de uma dada moeda para outra com atributos id, id_taxa_origem, id_taxa_destino.
+
+    Assim como deve ter sido possível inferir pelo nome, a relação Taxa, com atributos id, data, id_moeda e valor, representa uma taxa de conversão para uma dada moeda em uma dada data.
+
+    Por fim, a relação Moeda contém apenas o nome desta e sua id.
 
   \subsection{Resultados}
     \subsubsection{SQLServer (Caio e Gabriel)}
