@@ -11,7 +11,7 @@ GO
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-ALTER PROCEDURE [dbo].[AtualizaTaxaDeCambio]
+CREATE PROCEDURE [dbo].[AtualizaTaxaDeCambio]
 	-- Add the parameters for the stored procedure here
 AS
 BEGIN
