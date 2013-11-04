@@ -1,6 +1,6 @@
 USE [T2DB]
 GO
-/****** Object:  StoredProcedure [dbo].[AtualizaTaxaDeCambio]    Script Date: 02/11/2013 17:12:08 ******/
+/****** Object:  StoredProcedure [dbo].[AtualizaTaxaDeCambio]    Script Date: 03/11/2013 18:35:56 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -23,17 +23,17 @@ BEGIN
     -- Insert statements for procedure here
 
 	-- Declarando variável para colocar a taxa da moeda
-	DECLARE @currency VARCHAR(50) 
+	DECLARE @currency VARCHAR(50);
 
 	-- Inicializando o cursor para verificar cada moeda a ser atualizada
-	DECLARE CursorCurrency CURSOR FOR
-		SELECT[Currency]	
-		FROM [dbo].[Currency]
-		OPEN CursorCurrency;
-		FETCH NEXT FROM CursorCurrency into @currency;
+	DECLARE CursorMoeda CURSOR FOR
+		SELECT [Nome]
+		FROM [dbo].[Moeda]
+		OPEN CursorMoeda;
+		FETCH NEXT FROM CursorMoeda into @currency;
 		WHILE @@FETCH_STATUS = 0
 		   BEGIN
-				
+
 			-- Realizando a busca pela taxa da moeda
 			DECLARE @URL VARCHAR(8000) 
 			SELECT @URL = 'http://trabalho2db.azurewebsites.net/Currency/Get?exchangeRate=' + @currency	-- This works
@@ -50,18 +50,27 @@ BEGIN
 
 			-- Convertendo o valor que está em string em float
 			Declare @FloatResponse as float; 
-			select @FloatResponse = CAST(@ResponseText as float) 
-					
+			select @FloatResponse = CAST(@ResponseText as float);
+			
+			DECLARE @IntMoeda as Int; 
+			SELECT @IntMoeda = (SELECT [Id]
+								FROM [dbo].[Moeda]
+								WHERE [Nome] = @currency);
+
 			-- Realizando a atualização das novas taxa na tabela	
-			UPDATE [dbo].[Currency]
-			   SET [ExchangeRate] = @FloatResponse
-				  ,[UpdatedTime] = GETDATE()
-			 WHERE [Currency] = @currency	
-						
+			INSERT INTO [dbo].[Taxa]
+			   ([Id_Moeda]
+			   ,[Valor]
+			   ,[Data])
+				 VALUES
+				(@IntMoeda
+				,@FloatResponse
+				,GETDATE());
+		
 			-- Indo para próxima taxa
-			FETCH NEXT FROM CursorCurrency into @currency;
+			FETCH NEXT FROM CursorMoeda into @currency;
 		   END
-		CLOSE CursorCurrency;
-		DEALLOCATE CursorCurrency;
+		CLOSE CursorMoeda;
+		DEALLOCATE CursorMoeda;
 
 END

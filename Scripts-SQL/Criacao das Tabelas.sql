@@ -104,12 +104,14 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
+
 CREATE TABLE [dbo].[Boleto](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
-	[Status] [int] NOT NULL,
-	[Data] [date] NOT NULL,
-	[ValorCompra] [float],
-	[ValorMoedasDestino] [float] NOT NULL,
+	[Status] [int] NULL,
+	[Data] [datetime] NULL,
+	[ValorCompra] [float] NOT NULL,
+	[ValorMoedaDestino] [float] NULL,
+	[Pago] [bit] NOT NULL,
 	[Id_Cambio] [int] NOT NULL,
  CONSTRAINT [PK_Boleto] PRIMARY KEY CLUSTERED 
 (
