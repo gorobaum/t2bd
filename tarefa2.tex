@@ -280,6 +280,15 @@ O MS SQL Server é um SGBD - sistema gerenciador de Banco de dados relacional de
 	\href{http://trabalho2db.azurewebsites.net/Currency/Get?exchangeRate=}{http://trabalho2db.azurewebsites.net/Currency/Get?exchangeRate=} \\ \\
 	Exemplo de uso:\href{http://trabalho2db.azurewebsites.net/Currency/Get?exchangeRate=USD}{http://trabalho2db.azurewebsites.net/Currency/Get?exchangeRate=USD} \\ \\
 
+	Criamos o stored procedure AtualizaTaxa, que para toda entrada na tabela Moeda envia o valor seu nome para a aplicação web, e cria uma nova entrada em taxa com seu horário da atualização e valor obtido.
+
+	O próximo passo foi criar o stored procedure AtualizaTaxaDeCambio para associar todas as taxas obtidas em origens e destinos, por exemplo supondo que temos no banco de dados a taxa das seguintes moedas: USD, EUR e BRL vamos obter em Cambio as seguintes combinações: USD-USD, USD-EUR, USD-BRL, EUR-USD, EUR-EUR, EUR-BRL, BRL-USD, BRL-EUR, BRL-BRL.
+
+	Os dois stored procedures acima são executados de cinco em cinco minutos. SQL Server não suporta triggers usando tempo diretamente, mas podemos fazer uma construção equivalente usando Jobs para executar os stored procedures na frequência desejada.
+
+	Finalmente, usando um trigger, quando o usuário realiza uma compra, é especificado o valor em moedas destino que deseja comprar, usando essa informação e as informações de cambio mais recentes podemos calcular o valor da compra. O status da compra fica pendente até o usuário pagar o valor da compra, e nesse caso o status passa para finalizado, ou então até dois dias após o início da transação e nesse caso usamos um job para alterar o status do boleto para cancelado.
+
+
   \subsection{Resultados}
     \subsubsection{MySQL (Manzo \& Gordo)}
     \subsubsection{SQLServer (Caio e Gabriel)}
