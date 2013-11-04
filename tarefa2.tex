@@ -43,37 +43,27 @@ Emails: \IEEEauthorrefmark{3}manzo@ime.usp.br, \IEEEauthorrefmark{4}thiago.gouve
 
     Triggers podem ser classificados da seguinte maneira:
 
-    \begin{table}[H]
-        \begin{tabular}{p{8cm}p{8cm}p{8cm}p{8cm}}
-            \vspace{0pt}
-            \vspace{0pt}
-             DBMS Kernel
-            \vspace{0pt}
-            DBMS Services
-            \vspace{0pt}
-            External Applications
+ \begin{table*}[!t]
+    \renewcommand{\arraystretch}{1}
+    \caption{Classificação de triggers}
+    \label{table_example}
+    \centering
+    \begin{tabular}{ c  c  c  c  }
+      \hline 
+	 & \bfseries DBMS Kernel & \bfseries DBMS Services & \bfseries External Applications \\
+        \hline
+            \bfseries Handcrafted &
+            Gerenciamento de metadados, auditoria interna &
+            NA &
+            Regras de negócio, Escalonamento, Gerenciamento de fornecimento\\
+	\hline
+            \bfseries Generated &
+            Integridade referencial, materialized views &
+            Replicação, Extenders, Auditoria, Migração, Alertas &
+            Gerenciamento de Workflow \\
+	\hline
         \end{tabular}
-        \begin{tabular}{p{8cm}p{8cm}p{8cm}p{8cm}}
-            \vspace{0pt}
-            Handcrafted
-            \vspace{0pt}
-            Gerenciamento de metadados, auditoria interna
-            \vspace{0pt}
-            NA
-            \vspace{0pt}
-            Regras de negócio, Escalonamento, Gerenciamento de “cadeia de suprimentos”
-        \end{tabular}
-        \begin{tabular}{p{8cm}p{8cm}p{8cm}p{8cm}}
-            \vspace{0pt}
-            Generated
-            \vspace{0pt}
-            Integridade referencial, materialized views
-            \vspace{0pt}
-            Replicação, Extenders, Auditoria, Migração, Alertas
-            \vspace{0pt}
-            Gerenciamento de Workflow
-        \end{tabular}
-    \end{table}
+    \end{table*}
 
     \begin{itemize}
         \item{Handcrafted}: São triggers criados por algum programador.
@@ -84,62 +74,41 @@ Emails: \IEEEauthorrefmark{3}manzo@ime.usp.br, \IEEEauthorrefmark{4}thiago.gouve
     \end{itemize}
 
     Podemos ainda classificar os triggers em relação a sua função:
-    \begin{table}[H]
-        \begin{tabular}{p{8cm}p{8cm}p{8cm}}
-            \vspace{0pt}
-           Triggers que preservam restrições
-            \vspace{0pt}
-           Rollback caso as restrições sejam invalidadas
+ \begin{table*}[!t]
+    \renewcommand{\arraystretch}{1}
+    \caption{Classificação de triggers por função}
+    \label{table_example}
+    \centering
+    \begin{tabular}{ c  c  }
+      \hline 
+           \bfseries Triggers que preservam restrições &
+           Rollback caso as restrições sejam invalidadas \\
+      \hline 
+            \bfseries Triggers que preservam restrições &
+           Altera o valor para se conformar as restrições \\
+      \hline 
+            \bfseries Triggers que sinalizam violações de restrições &
+           Sinaliza para a aplicação, que deverá cuidar do problema \\
+      \hline 
+            \bfseries Materializing Trigger &
+           Mantêm a consistência da materialized view \\
+      \hline 
+           \bfseries Metadata Trigger &
+           Mantêm a consistencia dos metadados \\
+      \hline 
+           \bfseries Replication Trigger &
+           Mantêm a consistencia de dados replicados de uma tabela para outra \\
+      \hline 
+           \bfseries Extenders &
+           Gerencia novos tipos de dados e os mantêm consistentes com o banco de dados. \\
+      \hline 
+          \bfseries  Alerter &
+           Notifica o usuário via manesagens \\
+      \hline 
+           \bfseries  Ad-Hoc Trigger &
+            São triggers especificos para cada aplicação -> Regras de negócio, workflow, web, etc. \\
         \end{tabular}
-        \begin{tabular}{p{8cm}p{8cm}p{8cm}}
-            \vspace{0pt}
-            Triggers que preservam restrições
-            \vspace{0pt}
-           Altera o valor para se conformar as restrições
-        \end{tabular}
-        \begin{tabular}{p{8cm}p{8cm}p{8cm}}
-            \vspace{0pt}
-            Triggers que sinalizam violações de restrições
-            \vspace{0pt}
-           Sinaliza para a aplicação, que deverá cuidar do problema
-        \end{tabular}
-        \begin{tabular}{p{8cm}p{8cm}p{8cm}}
-            \vspace{0pt}
-            Materializing Trigger
-            \vspace{0pt}
-           Mantêm a consistência da materialized view
-        \end{tabular}
-        \begin{tabular}{p{8cm}p{8cm}p{8cm}}
-            \vspace{0pt}
-           Metadata Trigger
-            \vspace{0pt}
-           Mantêm a consistencia dos metadados
-        \end{tabular}
-        \begin{tabular}{p{8cm}p{8cm}p{8cm}}
-            \vspace{0pt}
-           Replication Trigger
-            \vspace{0pt}
-           Mantêm a consistencia de dados replicados de uma tabela para outra
-        \end{tabular}
-        \begin{tabular}{p{8cm}p{8cm}p{8cm}}
-            \vspace{0pt}
-           Extenders
-            \vspace{0pt}
-           Gerencia novos tipos de dados e os mantêm consistentes com o banco de dados.
-        \end{tabular}
-        \begin{tabular}{p{8cm}p{8cm}p{8cm}}
-            \vspace{0pt}
-           Alerter
-            \vspace{0pt}
-           Notifica o usuário via manesagens
-        \end{tabular}
-        \begin{tabular}{p{8cm}p{8cm}p{8cm}}
-            \vspace{0pt}
-            Ad-Hoc Trigger
-            \vspace{0pt}
-            São triggers especificos para cada aplicação -> Regras de negócio, workflow, web, etc.
-        \end{tabular}
-    \end{table}
+    \end{table*}
 
     A grande vantagem do uso de triggers é a possibilidade de mover a lógica e regras de negócio da aplicação para o banco de dados.
 
@@ -294,6 +263,9 @@ O MS SQL Server é um SGBD - sistema gerenciador de Banco de dados relacional de
     \subsubsection{SQLServer (Caio e Gabriel)}
 
 \begin{thebibliography}{1}
+
+\bibitem{Practical Applications of Triggers and Constraints: Successes and Lingering Issues}
+S. Ceri, R. J. Cochrane, J Widom, \textit{Practical Applications of Triggers and Constraints: Successes and Lingering Issues}, VLDB conference, Cairo Egypt. 2000.
 
 \bibitem{sweedish-article}
 M. Minock, J. Mollevik and M. \r{A}sander, \textit{Toward an Active Database Platform for Guiding Urban Pedestrians}. Ume\r{a}, Sweden: University of Ume\r{a}, 2012.
