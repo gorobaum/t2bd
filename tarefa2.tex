@@ -30,18 +30,17 @@ Emails: \IEEEauthorrefmark{3}manzo@ime.usp.br, \IEEEauthorrefmark{4}thiago.gouve
   Coisas da aula...
 
   \subsection{Conceitos}
-  Citando artigo resumido pelo Caio... (Caio)
+	Veremos adiante na seção “Practical Applications of Triggers and Constraints: Successes and Lingering Issues”, uma breve descrição do porquê surgiram os bancos de dados ativos, alguns conceitos como o modelo ECA, Event Condition Action, que serve como base para o uso de bancos de dados ativos, uma classificação de triggers por como eles foram criados e onde atuam, veremos também uma forma de classificação que se baseia na funcionalidade do trigger. 
 
 \section{Estado da arte}
   \subsection{Trabalhos científicos}
     \subsubsection{Practical Applications of Triggers and Constraints: Successes and Lingering Issues}
-    O artigo “Practical Applications of Triggers and Constraints: Successes and Lingering Issues” faz uma breve revisão sobre restrições e triggers, descreve dois métodos diferentes para agrupamento e comenta um pouco sobre os problemas e vantagens relacionados ao uso seu uso.
-
+    
     Triggers são baseadas no modelo ECA (Event Condition Action), quando um evento ocorre e alguma condição associada é verdadeira, executamos uma ação. Em relação ao seu comportamento, podemos definir muitas coisas como, sua granularidade, o trigger age em nível de linha ou tabela, a ordem da ação, ou seja se a ação deve ser executada antes, depois ou ao invés do evento que o disparou. As condições e funções são definidas arbitrariamente. Note que podemos utilizar os valores que existiam antes do evento ser disparado e depois.
 
     Triggers surgiram como uma forma de reação automática a violações de restrições de integridade, e logo foram generalizados para realização de outras tarefas, se tornando o modelo ECA que temos hoje. Os primeiros produtos que suportavam triggers surgiram no começo da década de 90, hoje em dia todos os vendedores de SGBDs relacionais tem suporte a triggers.
 
-    Triggers podem ser classificados da seguinte maneira:
+    Podemos ver uma classificação de triggers na Tabela I.
 
  \begin{table*}[!t]
     \renewcommand{\arraystretch}{1}
@@ -73,7 +72,7 @@ Emails: \IEEEauthorrefmark{3}manzo@ime.usp.br, \IEEEauthorrefmark{4}thiago.gouve
         \item{External}: Estão fora do banco de dados, fazem acesso ou se comunicam por meio de alguma API
     \end{itemize}
 
-    Podemos ainda classificar os triggers em relação a sua função:
+    Podemos ainda classificar os triggers em relação a sua função, como pode ser visto na Tabela II.
  \begin{table*}[!t]
     \renewcommand{\arraystretch}{1}
     \caption{Classificação de triggers por função}
@@ -180,7 +179,7 @@ Emails: \IEEEauthorrefmark{3}manzo@ime.usp.br, \IEEEauthorrefmark{4}thiago.gouve
 \section{Estudo de caso}
   \subsection{Características técnicas}
     \subsubsection{SQLServer (Gabriel)}
-O MS SQL Server é um SGBD - sistema gerenciador de Banco de dados relacional desenvolvido pela Microsoft. Foi criado em parceria com a Sybase em 1988 inicialmente para a plataforma OS/21 . Esta parceria durou até 1994, com o lançamento da versão para Windows NT e desde então a Microsoft mantém a manutenção do produto. O SQL não é Open Source e para utilizar o SQL Server é necessário comprar uma versão da Microsoft. Suas linguagens de consulta primárias são T-SQL e ANSI SQL.\\
+O MS SQL Server é um SGBD - sistema gerenciador de Banco de dados relacional desenvolvido pela Microsoft. Foi criado em parceria com a Sybase em 1988 inicialmente para a plataforma OS/21 . Esta parceria durou até 1994, com o lançamento da versão para Windows NT e desde então a Microsoft faz a manutenção do produto. O SQL Server não é Open Source e para poder utilizar-lo é necessário comprar uma licença da Microsoft. Suas linguagens de consulta primárias são T-SQL e ANSI SQL.\\
 	O SQL Server tem como principais características:
 \begin{itemize}
 \item Funciona no sistema operacional Windows
@@ -251,7 +250,7 @@ O MS SQL Server é um SGBD - sistema gerenciador de Banco de dados relacional de
 
 	Criamos o stored procedure AtualizaTaxa, que para toda entrada na tabela Moeda envia o valor seu nome para a aplicação web, e cria uma nova entrada em taxa com seu horário da atualização e valor obtido.
 
-	O próximo passo foi criar o stored procedure AtualizaTaxaDeCambio para associar todas as taxas obtidas em origens e destinos, por exemplo supondo que temos no banco de dados a taxa das seguintes moedas: USD, EUR e BRL vamos obter em Cambio as seguintes combinações: USD-USD, USD-EUR, USD-BRL, EUR-USD, EUR-EUR, EUR-BRL, BRL-USD, BRL-EUR, BRL-BRL.
+	O próximo passo foi criar o stored procedure AtualizaTaxaDeCambio para associar as taxas de todas as moedas que foram obtidas mais recentemente em todas as possíveis combinações de origens e destinos, por exemplo supondo que temos no banco de dados a taxa das seguintes moedas: USD, EUR e BRL vamos obter em Cambio as seguintes combinações: USD-USD, USD-EUR, USD-BRL, EUR-USD, EUR-EUR, EUR-BRL, BRL-USD, BRL-EUR, BRL-BRL.
 
 	Os dois stored procedures acima são executados de cinco em cinco minutos. SQL Server não suporta triggers usando tempo diretamente, mas podemos fazer uma construção equivalente usando Jobs para executar os stored procedures na frequência desejada.
 
