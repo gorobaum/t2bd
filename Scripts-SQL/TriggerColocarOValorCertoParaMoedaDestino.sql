@@ -16,9 +16,13 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
 CREATE TRIGGER TriggerColocarOValorCertoParaMoedaDestino 
-   ON  [T2Db].[dbo].[Boleto]
+   ON  [T2DB].[dbo].[Boleto]
    AFTER INSERT
 AS 
 BEGIN
@@ -55,6 +59,6 @@ BEGIN
 		  ,[ValorMoedaDestino] = @ValorMoeda * @Taxa
 	 WHERE [Id] = @IdBoleto
 
-	 
+
 END
 GO
