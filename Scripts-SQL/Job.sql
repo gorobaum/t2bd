@@ -1,11 +1,11 @@
 USE [msdb]
 GO
 
-/****** Object:  Job [AtualizaTaxaGeraCambioVerificaBoletos]    Script Date: 04-Nov-13 5:16:04 PM ******/
+/****** Object:  Job [AtualizaTaxaGeraCambioVerificaBoletos]    Script Date: 04-Nov-13 10:04:46 PM ******/
 BEGIN TRANSACTION
 DECLARE @ReturnCode INT
 SELECT @ReturnCode = 0
-/****** Object:  JobCategory [[Uncategorized (Local)]]]    Script Date: 04-Nov-13 5:16:04 PM ******/
+/****** Object:  JobCategory [[Uncategorized (Local)]]]    Script Date: 04-Nov-13 10:04:46 PM ******/
 IF NOT EXISTS (SELECT name FROM msdb.dbo.syscategories WHERE name=N'[Uncategorized (Local)]' AND category_class=1)
 BEGIN
 EXEC @ReturnCode = msdb.dbo.sp_add_category @class=N'JOB', @type=N'LOCAL', @name=N'[Uncategorized (Local)]'
@@ -21,11 +21,11 @@ EXEC @ReturnCode =  msdb.dbo.sp_add_job @job_name=N'AtualizaTaxaGeraCambioVerifi
 		@notify_level_netsend=0, 
 		@notify_level_page=0, 
 		@delete_level=0, 
-		@description=N'Executa o stored procedure AtualizaTaxaDeCambio a cada 5 minutos na tabela dbo.Currency do banco de dados T2DB. Gera o cambio a partir da taxa usando o stored procedure AtualizaCambioAposAtualizacaoDeTaxa. Verifica se há boletos com mais de dois dias usando o procedure VerificaBoletosCanceladosEProcessados.', 
+		@description=N'Executa os stored procedures de 5 em 5 minutos', 
 		@category_name=N'[Uncategorized (Local)]', 
 		@owner_login_name=N'MSI\Caio', @job_id = @jobId OUTPUT
 IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
-/****** Object:  Step [Gera as taxas.]    Script Date: 04-Nov-13 5:16:04 PM ******/
+/****** Object:  Step [Gera as taxas.]    Script Date: 04-Nov-13 10:04:46 PM ******/
 EXEC @ReturnCode = msdb.dbo.sp_add_jobstep @job_id=@jobId, @step_name=N'Gera as taxas.', 
 		@step_id=1, 
 		@cmdexec_success_code=0, 
@@ -41,7 +41,7 @@ GO
 
 DECLARE	@return_value int
 
-EXEC	@return_value = [dbo].[AtualizaTaxaDeCambio]
+EXEC	@return_value = [dbo].[AtualizaTaxa]
 
 SELECT	''Return Value'' = @return_value
 
@@ -50,7 +50,7 @@ GO
 		@database_name=N'master', 
 		@flags=0
 IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
-/****** Object:  Step [Atualiza a tabela de cambio.]    Script Date: 04-Nov-13 5:16:04 PM ******/
+/****** Object:  Step [Atualiza a tabela de cambio.]    Script Date: 04-Nov-13 10:04:46 PM ******/
 EXEC @ReturnCode = msdb.dbo.sp_add_jobstep @job_id=@jobId, @step_name=N'Atualiza a tabela de cambio.', 
 		@step_id=2, 
 		@cmdexec_success_code=0, 
@@ -66,7 +66,7 @@ GO
 
 DECLARE	@return_value int
 
-EXEC	@return_value = [dbo].[AtualizaCambioAposAtualizacaoDeTaxa]
+EXEC	@return_value = [dbo].[GeraCambioAposAtualizacaoDeTaxa]
 
 SELECT	''Return Value'' = @return_value
 
@@ -75,7 +75,7 @@ GO
 		@database_name=N'master', 
 		@flags=0
 IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
-/****** Object:  Step [Verifica Boletos.]    Script Date: 04-Nov-13 5:16:04 PM ******/
+/****** Object:  Step [Verifica Boletos.]    Script Date: 04-Nov-13 10:04:46 PM ******/
 EXEC @ReturnCode = msdb.dbo.sp_add_jobstep @job_id=@jobId, @step_name=N'Verifica Boletos.', 
 		@step_id=3, 
 		@cmdexec_success_code=0, 
@@ -91,7 +91,7 @@ GO
 
 DECLARE	@return_value int
 
-EXEC	@return_value = [dbo].[VerificaBoletosCanceladosEProcessadosParaPagamentosEmAte2Dias]
+EXEC	@return_value = [dbo].[VerificaBoletosCanceladosEProcessados]
 
 SELECT	''Return Value'' = @return_value
 

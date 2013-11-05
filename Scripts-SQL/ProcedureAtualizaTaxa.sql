@@ -1,6 +1,6 @@
 USE [T2DB]
 GO
-/****** Object:  StoredProcedure [dbo].[AtualizaTaxaDeCambio]    Script Date: 03/11/2013 18:35:56 ******/
+/****** Object:  StoredProcedure [dbo].[AtualizaTaxa]    Script Date: 04-Nov-13 9:08:41 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -11,7 +11,7 @@ GO
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-CREATE PROCEDURE [dbo].[AtualizaTaxaDeCambio]
+CREATE PROCEDURE [dbo].[AtualizaTaxa]
 	-- Add the parameters for the stored procedure here
 AS
 BEGIN
@@ -20,7 +20,7 @@ BEGIN
 	SET NOCOUNT ON;
 	
 
-    -- Insert statements for procedure here
+    -- Inset statements for procedure here
 
 	-- Declarando variável para colocar a taxa da moeda
 	DECLARE @currency VARCHAR(50);
@@ -65,7 +65,7 @@ BEGIN
 				 VALUES
 				(@IntMoeda
 				,@FloatResponse
-				,GETDATE());
+				,SYSDATETIME());
 		
 			-- Indo para próxima taxa
 			FETCH NEXT FROM CursorMoeda into @currency;

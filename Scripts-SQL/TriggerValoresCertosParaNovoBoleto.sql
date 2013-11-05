@@ -1,17 +1,6 @@
--- ================================================
--- Template generated from Template Explorer using:
--- Create Trigger (New Menu).SQL
---
--- Use the Specify Values for Template Parameters 
--- command (Ctrl-Shift-M) to fill in the parameter 
--- values below.
---
--- See additional Create Trigger templates for more
--- examples of different Trigger statements.
---
--- This block of comments will not be included in
--- the definition of the function.
--- ================================================
+USE [T2DB]
+GO
+/****** Object:  Trigger [dbo].[TriggerColocarOValorCertoParaMoedaDestino]    Script Date: 04-Nov-13 8:52:33 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -21,7 +10,7 @@ GO
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-CREATE TRIGGER TriggerColocarOValorCertoParaMoedaDestino 
+CREATE TRIGGER [dbo].[ValoresCertosParaNovoBoleto] 
    ON  [T2DB].[dbo].[Boleto]
    AFTER INSERT
 AS 
@@ -34,31 +23,43 @@ BEGIN
 	DECLARE @IdCambio AS INT;
 	DECLARE @IdBoleto AS INT;
 	DECLARE @IdMoedaOrigem AS INT;
+	DECLARE @IdMoedaDestino AS INT;
 	DECLARE @EmAnalise AS VARCHAR(50);
+	DECLARE @NaoPago AS BIT;
 	DECLARE @ValorMoeda AS FLOAT;
-	DECLARE @Taxa AS FLOAT;
+	DECLARE @TaxaOrigem AS FLOAT;
+	DECLARE @TaxaDestino AS FLOAT;
 
 	SELECT @IdCambio = INSERTED.Id_Cambio FROM INSERTED;
 	SELECT @IdBoleto = INSERTED.Id FROM INSERTED;
-	SELECT @ValorMoeda = INSERTED.ValorCompra FROM INSERTED;
+	SELECT @ValorMoeda = INSERTED.ValorMoedaDestino FROM INSERTED;
 
 	SELECT @EmAnalise = 0;
+	SELECT @NaoPago = 0;
 
 	SELECT @IdMoedaOrigem = (SELECT TOP 1 [Id_Origem]
 							FROM [T2DB].[dbo].[Cambio]
 							WHERE [Id] = @IdCambio);
 
-	SELECT @Taxa = 	(SELECT TOP 1 [Valor]
-					  FROM [T2DB].[dbo].[Taxa]
-					  WHERE [Id_Moeda] = @IdMoedaOrigem
-					  ORDER BY Id DESC);
+	SELECT @IdMoedaOrigem = (SELECT TOP 1 [Id_Destino]
+							FROM [T2DB].[dbo].[Cambio]
+							WHERE [Id] = @IdCambio);
+
+	SELECT @TaxaOrigem = (SELECT TOP 1 [Valor]
+						FROM [T2DB].[dbo].[Taxa]
+						WHERE [Id_Moeda] = @IdMoedaOrigem
+						ORDER BY Id DESC);
+	SELECT @TaxaDestino = (SELECT TOP 1 [Valor]
+						FROM [T2DB].[dbo].[Taxa]
+						WHERE [Id_Moeda] = @IdMoedaDestino
+						ORDER BY Id DESC);
 
 	UPDATE [T2DB].[dbo].[Boleto]
 	   SET [Status] = @EmAnalise
-		  ,[Data] = GETDATE()
-		  ,[ValorMoedaDestino] = @ValorMoeda * @Taxa
+		  ,[Data] = SYSDATETIME()
+		  ,[ValorMoedaDestino] = (@ValorMoeda * @TaxaOrigem) / @TaxaDestino
+		  ,[Pago] = @NaoPago
 	 WHERE [Id] = @IdBoleto
 
 
 END
-GO

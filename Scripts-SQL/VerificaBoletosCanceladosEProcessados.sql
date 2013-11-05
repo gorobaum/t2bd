@@ -1,14 +1,6 @@
--- ================================================
--- Template generated from Template Explorer using:
--- Create Procedure (New Menu).SQL
---
--- Use the Specify Values for Template Parameters 
--- command (Ctrl-Shift-M) to fill in the parameter 
--- values below.
---
--- This block of comments will not be included in
--- the definition of the procedure.
--- ================================================
+USE [T2DB]
+GO
+/****** Object:  StoredProcedure [dbo].[VerificaBoletosCanceladosEProcessados]    Script Date: 04-Nov-13 9:08:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -18,7 +10,7 @@ GO
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-CREATE PROCEDURE VerificaBoletosCanceladosEProcessadosParaPagamentosEmAte2Dias
+CREATE PROCEDURE [dbo].[VerificaBoletosCanceladosEProcessados]
 	-- Add the parameters for the stored procedure here
 
 AS
@@ -33,7 +25,7 @@ BEGIN
 	DECLARE CursorBoletosProcessados CURSOR FOR
 		SELECT [Id]
 		FROM [dbo].[Boleto]
-		WHERE ((SELECT DATEDIFF ( DAY , [Data] , GETDATE() )) <= 2) AND [Status] = 0 AND [Pago] = 1 
+		WHERE ((SELECT DATEDIFF ( DAY , [Data] , SYSDATETIME() )) <= 2) AND [Status] = 0 AND [Pago] = 1 
 		OPEN CursorBoletosProcessados;
 		FETCH NEXT FROM CursorBoletosProcessados into @IdBoleto;
 		WHILE @@FETCH_STATUS = 0
@@ -72,4 +64,3 @@ BEGIN
 		DEALLOCATE CursorBoletosCancelados;
 
 END
-GO

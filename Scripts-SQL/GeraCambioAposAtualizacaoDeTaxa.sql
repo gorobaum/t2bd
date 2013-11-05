@@ -1,14 +1,12 @@
-/****** Script for SelectTopNRows command from SSMS  ******/
-USE T2DB
+USE [T2DB]
 GO
-
+/****** Object:  StoredProcedure [dbo].[GeraCambioAposAtualizacaoDetTaxa]    Script Date: 04-Nov-13 9:09:01 PM ******/
 SET ANSI_NULLS ON
 GO
-
 SET QUOTED_IDENTIFIER ON
 GO
 
-CREATE PROCEDURE [dbo].[AtualizaCambioAposAtualizacaoDeTaxa]
+CREATE PROCEDURE [dbo].[GeraCambioAposAtualizacaoDeTaxa]
 AS
 BEGIN
 
@@ -27,7 +25,7 @@ DECLARE Cursor1 CURSOR FOR
 		--SELECT @moeda_origem
 		SELECT @taxa_moeda_origem = (SELECT TOP 1 [Id] FROM [T2DB].[dbo].[Taxa]
 		WHERE(Id_Moeda = @moeda_origem)
-		ORDER BY Data)
+		ORDER BY Data DESC)
 
 
 		DECLARE Cursor2 CURSOR FOR
@@ -40,14 +38,14 @@ DECLARE Cursor1 CURSOR FOR
 				--SELECT @moeda_destino
 				SELECT @taxa_moeda_destino = (SELECT TOP 1 [Id] FROM [T2DB].[dbo].[Taxa]
 				WHERE(Id_Moeda = @moeda_destino)
-				ORDER BY Data)
+				ORDER BY Data DESC)
 				INSERT INTO [T2DB].[dbo].[Cambio]
 					([Id_origem]
 					,[Id_Destino])
 					 VALUES
 					(@taxa_moeda_origem
 					,@taxa_moeda_destino);
-					--SELECT @taxa_moeda_origem, @taxa_moeda_destino
+					--SELECT @taxa_moeda_oarigem, @taxa_moeda_destino
 
 				FETCH NEXT FROM Cursor2 into @moeda_destino
 			END
@@ -60,4 +58,3 @@ DECLARE Cursor1 CURSOR FOR
 	DEALLOCATE Cursor1
 
 END
-GO

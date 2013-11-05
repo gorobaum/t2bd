@@ -40,7 +40,7 @@ CREATE TABLE [dbo].[Taxa](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[Id_Moeda] [int] NOT NULL,
 	[Valor] [float] NOT NULL,
-	[Data] [date] NOT NULL,
+	[Data] [datetime2] NOT NULL,
  CONSTRAINT [PK_Taxa] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
@@ -94,24 +94,21 @@ ALTER TABLE [dbo].[Cambio] CHECK CONSTRAINT [Taxa Origem]
 GO
 
 
-USE [T2DB]
-GO
 
-/****** Object:  Table [dbo].[Boleto]    Script Date: 03-Nov-13 5:32:51 PM ******/
+/****** Object:  Table [dbo].[Boleto]    Script Date: 04-Nov-13 8:53:15 PM ******/
 SET ANSI_NULLS ON
 GO
 
 SET QUOTED_IDENTIFIER ON
 GO
 
-
 CREATE TABLE [dbo].[Boleto](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[Status] [int] NULL,
-	[Data] [datetime] NULL,
-	[ValorCompra] [float] NOT NULL,
-	[ValorMoedaDestino] [float] NULL,
-	[Pago] [bit] NOT NULL,
+	[Data] [datetime2] NULL,
+	[ValorCompra] [float] NULL,
+	[ValorMoedaDestino] [float] NOT NULL,
+	[Pago] [bit] NULL,
 	[Id_Cambio] [int] NOT NULL,
  CONSTRAINT [PK_Boleto] PRIMARY KEY CLUSTERED 
 (
@@ -127,5 +124,6 @@ GO
 
 ALTER TABLE [dbo].[Boleto] CHECK CONSTRAINT [Camio do Boleto]
 GO
+
 
 
