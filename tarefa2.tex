@@ -252,7 +252,9 @@ O MS SQL Server é um SGBD - sistema gerenciador de Banco de dados relacional de
 
 	O próximo passo foi criar o stored procedure AtualizaTaxaDeCambio para associar as taxas de todas as moedas que foram obtidas mais recentemente em todas as possíveis combinações de origens e destinos, por exemplo supondo que temos no banco de dados a taxa das seguintes moedas: USD, EUR e BRL vamos obter em Cambio as seguintes combinações: USD-USD, USD-EUR, USD-BRL, EUR-USD, EUR-EUR, EUR-BRL, BRL-USD, BRL-EUR, BRL-BRL.
 
-	Os dois stored procedures acima são executados de cinco em cinco minutos. SQL Server não suporta triggers usando tempo diretamente, mas podemos fazer uma construção equivalente usando Jobs para executar os stored procedures na frequência desejada.
+	Os dois stored procedures acima são executados de cinco em cinco minutos. SQL Server não suporta triggers usando tempo diretamente, mas podemos fazer uma construção equivalente usando Jobs. 
+
+	Jobs são conjuntos de operações executadas sequencialmente. Um job pode executar diversas atividades, incluindo a execução de scripts T-SQL ou queries. Jobs podem ser escalonados para executarem em algum horário ou alguma frequência desejada.
 
 	Finalmente, usando um trigger, quando o usuário realiza uma compra, é especificado o valor em moedas destino que deseja comprar, usando essa informação e as informações de cambio mais recentes podemos calcular o valor da compra. O status da compra fica pendente até o usuário pagar o valor da compra, e nesse caso o status passa para finalizado, ou então até dois dias após o início da transação e nesse caso usamos um job para alterar o status do boleto para cancelado.
 
