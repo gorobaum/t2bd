@@ -1,6 +1,6 @@
 USE [T2DB]
 GO
-/****** Object:  Trigger [dbo].[TriggerColocarOValorCertoParaMoedaDestino]    Script Date: 04-Nov-13 8:52:33 PM ******/
+/****** Object:  Trigger [dbo].[ValoresCertosParaNovoBoleto]    Script Date: 05-Nov-13 12:21:51 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -10,7 +10,7 @@ GO
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-CREATE TRIGGER [dbo].[ValoresCertosParaNovoBoleto] 
+ALTER TRIGGER [dbo].[ValoresCertosParaNovoBoleto] 
    ON  [T2DB].[dbo].[Boleto]
    AFTER INSERT
 AS 
@@ -41,23 +41,24 @@ BEGIN
 							FROM [T2DB].[dbo].[Cambio]
 							WHERE [Id] = @IdCambio);
 
-	SELECT @IdMoedaOrigem = (SELECT TOP 1 [Id_Destino]
+	SELECT @IdMoedaDestino = (SELECT TOP 1 [Id_Destino]
 							FROM [T2DB].[dbo].[Cambio]
 							WHERE [Id] = @IdCambio);
 
 	SELECT @TaxaOrigem = (SELECT TOP 1 [Valor]
 						FROM [T2DB].[dbo].[Taxa]
-						WHERE [Id_Moeda] = @IdMoedaOrigem
-						ORDER BY Id DESC);
+						WHERE [Id] = @IdMoedaOrigem);
+
 	SELECT @TaxaDestino = (SELECT TOP 1 [Valor]
 						FROM [T2DB].[dbo].[Taxa]
-						WHERE [Id_Moeda] = @IdMoedaDestino
-						ORDER BY Id DESC);
+						WHERE [Id] = @IdMoedaDestino);
+
+
 
 	UPDATE [T2DB].[dbo].[Boleto]
 	   SET [Status] = @EmAnalise
 		  ,[Data] = SYSDATETIME()
-		  ,[ValorMoedaDestino] = (@ValorMoeda * @TaxaOrigem) / @TaxaDestino
+		  ,[ValorCompra] = (@ValorMoeda*(@TaxaDestino/@TaxaOrigem))
 		  ,[Pago] = @NaoPago
 	 WHERE [Id] = @IdBoleto
 
