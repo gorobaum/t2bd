@@ -65,5 +65,3 @@ BEGIN
 		DEALLOCATE CursorBoletosCancelados;
 
 END
-
-EXEC dbo.VerificaBoletosCanceladosEProcessados
