@@ -24,10 +24,15 @@ Emails: \IEEEauthorrefmark{3}manzo@ime.usp.br, \IEEEauthorrefmark{4}thiago.gouve
 \IEEEpeerreviewmaketitle
 
 \section{Introdução}
-  \subsection{Motivação e contextualização (Gordo)}
-	Passar nessa porra.
+  \subsection{Motivação e contextualização}
+  Em um sistema que utiliza um banco de dados relacional sem alguma ferramente ativa o controle de modificações sobre o banco de dados deve ficar na aplicação. Com a introdução dos banco de dados
+  ativos é possível detectar modificações no banco de dados ou criar regras de monitoramento com base no tempo para controlar as transações que modificam o banco de dados. A grande vantagem de utilizar
+  um sistema ativo dentro do banco de dados é o ganho de eficiência, já que antes essas operações teriam que ficar na aplicação. Agora o administrador de banco de dados pode ficar responsável em
+  criar e manter essas regras, programando na mesma linguagem usada dentro do SGBD.
 
-  Coisas da aula...
+  Bancos de dados ativos fornecem uma forma de utilizar o paradigma Evento-Condição-Ação integrado ao sistema de gerenciamento de banco de dados. Regras ECA são Ações que acontecem depois de um Evento
+  previamente descrito, dado que uma certa Condição seja alcançada pelo banco de dados no seu estado atual. \\
+
 
   \subsection{Conceitos}
 	Veremos adiante na seção “Practical Applications of Triggers and Constraints: Successes and Lingering Issues”, uma breve descrição do porquê surgiram os bancos de dados ativos, alguns conceitos como o modelo ECA, Event Condition Action, que serve como base para o uso de bancos de dados ativos, uma classificação de triggers por como eles foram criados e onde atuam, veremos também uma forma de classificação que se baseia na funcionalidade do trigger. 
