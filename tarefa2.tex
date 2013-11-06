@@ -190,13 +190,13 @@ Emails:  \IEEEauthorrefmark{1}caiov@ime.usp.br, \IEEEauthorrefmark{2}reganati@im
     
     O SQL Server tem como principais características:
     \begin{itemize}
-    \item Funciona no sistema operacional Windows
-    \item Tem como tamanho máximo de banco de dados como 524 TB  e tamanho máximo de tabela como 524 TB
-    \item Suporte a multi-threads
-    \item A interface Connector/ODBC fornece ao SQL Server suporte a programas clientes que usam conexão ODBC (Open-DataBase-Connectivity).
-    \item Suporte nativo ao XML
-    \item Suporte a internacionalização
-    \item Suporte a Data Warehouse
+      \item Funciona no sistema operacional Windows
+      \item Tem como tamanho máximo de banco de dados como 524 TB  e tamanho máximo de tabela como 524 TB
+      \item Suporte a multi-threads
+      \item A interface Connector/ODBC fornece ao SQL Server suporte a programas clientes que usam conexão ODBC (Open-DataBase-Connectivity).
+      \item Suporte nativo ao XML
+      \item Suporte a internacionalização
+      \item Suporte a Data Warehouse
     \end{itemize}
 
     \subsubsection{MySQL}
@@ -246,13 +246,21 @@ Emails:  \IEEEauthorrefmark{1}caiov@ime.usp.br, \IEEEauthorrefmark{2}reganati@im
 
     Por fim, a relação Moeda contém apenas o nome desta e sua id.
 
-    \subsubsection{SQLServer (Caio e Gabriel)}
+    Neste foi criado uma regra ativa para que, quando uma taxa é inserida, todos os boletos vencidos sejam removidos.
+
+    \begin{figure}[!t]
+      \centering
+      \includegraphics[scale=0.40]{img/trigger-mysql.png}
+      \caption{Modelagem do banco MS SQL para os testes}
+    \end{figure}
+
+    \subsubsection{SQLServer}
   	Usamos a ferramenta SQL Server Management Studio para trabalhar com SQL Server.			
   	Decidimos seguir o mesmo padrão usado na resolução do problema com MySQL, segue o diagrama das tabelas:
    
     \begin{figure}[!t]
       \centering
-  	  \includegraphics[scale=0.65]{img/tabela.jpg}
+      \includegraphics[scale=0.65]{img/tabela.jpg}
       \caption{Modelagem do banco MS SQL para os testes}
     \end{figure}
 
@@ -298,9 +306,8 @@ Emails:  \IEEEauthorrefmark{1}caiov@ime.usp.br, \IEEEauthorrefmark{2}reganati@im
 
     O status da compra fica pendente até o usuário pagar o valor da compra, e nesse caso o status passa para finalizado, ou então até dois dias após o início da transação e nesse caso usamos um job para alterar o status do boleto para cancelado.
 
-  \subsection{Resultados}
-    \subsubsection{MySQL (Manzo \& Gordo)}
-    \subsubsection{SQLServer (Caio e Gabriel)}
+  \subsection{Conclusão dos testes}
+    
 
 \begin{thebibliography}{1}
 
