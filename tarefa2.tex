@@ -186,7 +186,7 @@ Emails:  \IEEEauthorrefmark{1}caiov@ime.usp.br, \IEEEauthorrefmark{2}reganati@im
 \section{Estudo de caso}
   \subsection{Características técnicas}
     \subsubsection{SQLServer }
-    O Microsoft SQL Server é um SGBD - sistema gerenciador de Banco de dados relacional desenvolvido pela Microsoft. Foi criado em parceria com a Sybase em 1988 inicialmente para a plataforma OS/21 . Esta parceria durou até 1994, com o lançamento da versão para Windows NT e desde então a Microsoft faz a manutenção do produto. O SQL Server não é Open Source e para poder utilizar-lo é necessário comprar uma licença da Microsoft. Suas linguagens de consulta primárias são Transact-SQL (T-SQL) e ANSI SQL.\\
+    O Microsoft SQL Server é um SGBD - sistema gerenciador de Banco de dados relacional desenvolvido pela Microsoft. Foi criado em parceria com a Sybase em 1988 inicialmente para a plataforma OS/21 . Esta parceria durou até 1994, com o lançamento da versão para Windows NT e desde então a Microsoft faz a manutenção do produto. O SQL Server não é Open Source e para poder utilizar-lo é necessário comprar uma licença da Microsoft. Suas linguagens de consulta primárias são Transact-SQL (T-SQL) e ANSI SQL.\cite{sql-server-site}\\
     
     O SQL Server tem como principais características:
     \begin{itemize}
@@ -198,10 +198,12 @@ Emails:  \IEEEauthorrefmark{1}caiov@ime.usp.br, \IEEEauthorrefmark{2}reganati@im
       \item Suporte a internacionalização
       \item Suporte a Data Warehouse
       \item Triggers Recursivas. É possível definir uma profundidade máxima de recursão
+      \item Suporte a cryptografia
     \end{itemize}
 
     \subsubsection{MySQL}
-	  MySQL é o mais popular sistema de gerenciamento de banco de dados SQL Open Source, é desenvolvido, distribuído e tem suporte da MySQL AB. A MySQL AB é uma empresa comercial, fundada pelos desenvolvedores do MySQL, cujos negócios é fornecer serviços relacionados ao sistema de gerenciamento de banco de dados MySQL\\
+	  MySQL é o mais popular sistema de gerenciamento de banco de dados SQL Open Source, é desenvolvido, distribuído e tem suporte da MySQL AB. A MySQL AB é uma empresa comercial, fundada pelos desenvolvedores do MySQL, cujos negócios é fornecer serviços relacionados ao sistema de gerenciamento de banco de dados MySQL\cite{mysql-site}\\
+
 	  
     O MySQL tem como principais características:
     \begin{itemize}
@@ -217,7 +219,6 @@ Emails:  \IEEEauthorrefmark{1}caiov@ime.usp.br, \IEEEauthorrefmark{2}reganati@im
     \item Suporte total para vários conjuntos de caracteres, que incluem ISO-8859-1 (Latin1), big5, ujis e mais.
     \item Tem como tamanho máximo de banco de dados como ilimitado e tamanho máximo de tabela como 256 TB
     \end{itemize}
-
     A consideração e execução de regras ativas depende do tempo de execução definido para a trigger. Caso seja utilizada a clásula \textit{BEFORE} na \textit{trigger}, a consideração é feita antes da transação, enquanto que no caso de \textit{AFTER} ela é feita após a transação. Já a execução é sempre imediata.\cite{caracteristica-myssql}
 
   \subsection{Cenário}
@@ -329,11 +330,11 @@ Emails:  \IEEEauthorrefmark{1}caiov@ime.usp.br, \IEEEauthorrefmark{2}reganati@im
   \bibitem{sweedish-article}
   M. Minock, J. Mollevik and M. \r{A}sander, \textit{Toward an Active Database Platform for Guiding Urban Pedestrians}. Ume\r{a}, Sweden: University of Ume\r{a}, 2012.
 
+  \bibitem{sql-server-site}
+http://msdn.microsoft.com/en-us/library/hh231622.aspx
+
   \bibitem{mysql-site}
   http://ftp.nchu.edu.tw/MySQL/doc/refman/4.1/pt/
-
-  \bibitem{sql-server-site}
-  http://msdn.microsoft.com/en-us/library/cc645993.aspx
 
   \bibitem{caracteristica-myssql}
   http://www.cs.duke.edu/csl/docs/mysql-refman/triggers.html
