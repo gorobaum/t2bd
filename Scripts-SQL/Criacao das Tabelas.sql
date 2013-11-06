@@ -40,7 +40,7 @@ CREATE TABLE [dbo].[Taxa](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[Id_Moeda] [int] NOT NULL,
 	[Valor] [float] NOT NULL,
-	[Data] [datetime2] NOT NULL,
+	[Data] [datetime] NOT NULL,
  CONSTRAINT [PK_Taxa] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
@@ -105,7 +105,7 @@ GO
 CREATE TABLE [dbo].[Boleto](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[Status] [int] NULL,
-	[Data] [datetime2] NULL,
+	[Data] [datetime] NULL,
 	[ValorCompra] [float] NULL,
 	[ValorMoedaDestino] [float] NOT NULL,
 	[Pago] [bit] NULL,

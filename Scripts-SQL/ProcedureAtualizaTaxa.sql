@@ -1,6 +1,6 @@
 USE [T2DB]
 GO
-/****** Object:  StoredProcedure [dbo].[AtualizaTaxa]    Script Date: 04-Nov-13 9:08:41 PM ******/
+/****** Object:  StoredProcedure [dbo].[AtualizaTaxa]    Script Date: 06-Nov-13 6:38:02 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -36,7 +36,7 @@ BEGIN
 
 			-- Realizando a busca pela taxa da moeda
 			DECLARE @URL VARCHAR(8000) 
-			SELECT @URL = 'http://trabalho2db.azurewebsites.net/Currency/Get?exchangeRate=' + @currency	-- This works
+			SELECT @URL = 'http://trabalho2db.azurewebsites.net/Currency/Get?exchangeRate=' + @currency
 
 			Declare @Object as Int; 
 			Declare @ResponseText as Varchar(8000); 

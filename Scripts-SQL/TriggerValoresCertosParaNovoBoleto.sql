@@ -10,7 +10,7 @@ GO
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-ALTER TRIGGER [dbo].[ValoresCertosParaNovoBoleto] 
+CREATE TRIGGER [dbo].[ValoresCertosParaNovosBoleto] 
    ON  [T2DB].[dbo].[Boleto]
    AFTER INSERT
 AS 

@@ -1,16 +1,17 @@
 USE [T2DB]
 GO
-/****** Object:  StoredProcedure [dbo].[VerificaBoletosCanceladosEProcessados]    Script Date: 04-Nov-13 9:08:12 PM ******/
+/****** Object:  StoredProcedure [dbo].[VerificaBoletosCanceladosEProcessados]    Script Date: 06-Nov-13 6:20:39 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+-- Batch submitted through debugger: SQLQuery8.sql|7|0|C:\Users\Caio\AppData\Local\Temp\~vsBAF8.sql
 -- =============================================
 -- Author:		<Author,,Name>
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-CREATE PROCEDURE [dbo].[VerificaBoletosCanceladosEProcessados]
+ALTER PROCEDURE [dbo].[VerificaBoletosCanceladosEProcessados]
 	-- Add the parameters for the stored procedure here
 
 AS
@@ -47,7 +48,7 @@ BEGIN
 	DECLARE CursorBoletosCancelados CURSOR FOR
 		SELECT [Id]
 		FROM [dbo].[Boleto]
-		WHERE ((SELECT DATEDIFF ( DAY , [Data] , GETDATE() )) > 2) AND [Status] = 0 AND [Pago] = 0 
+		WHERE ((SELECT DATEDIFF ( DAY , [Data] , SYSDATETIME() )) > 2) AND [Status] = 0 AND [Pago] = 0 
 		OPEN CursorBoletosCancelados;
 		FETCH NEXT FROM CursorBoletosCancelados into @IdBoleto;
 		WHILE @@FETCH_STATUS = 0
@@ -64,3 +65,5 @@ BEGIN
 		DEALLOCATE CursorBoletosCancelados;
 
 END
+
+EXEC dbo.VerificaBoletosCanceladosEProcessados
