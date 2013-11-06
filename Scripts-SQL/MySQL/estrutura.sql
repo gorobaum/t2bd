@@ -98,7 +98,7 @@ DROP TABLE IF EXISTS `taxa`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `taxa` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `valor` decimal(10,0) NOT NULL,
   `data` datetime DEFAULT NULL,
   `id_moeda` int(11) NOT NULL,
