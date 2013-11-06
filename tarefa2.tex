@@ -186,7 +186,7 @@ Emails:  \IEEEauthorrefmark{1}caiov@ime.usp.br, \IEEEauthorrefmark{2}reganati@im
 \section{Estudo de caso}
   \subsection{Características técnicas}
     \subsubsection{SQLServer }
-    O MS SQL Server é um SGBD - sistema gerenciador de Banco de dados relacional desenvolvido pela Microsoft. Foi criado em parceria com a Sybase em 1988 inicialmente para a plataforma OS/21 . Esta parceria durou até 1994, com o lançamento da versão para Windows NT e desde então a Microsoft faz a manutenção do produto. O SQL Server não é Open Source e para poder utilizar-lo é necessário comprar uma licença da Microsoft. Suas linguagens de consulta primárias são T-SQL e ANSI SQL.\\
+    O Microsoft SQL Server é um SGBD - sistema gerenciador de Banco de dados relacional desenvolvido pela Microsoft. Foi criado em parceria com a Sybase em 1988 inicialmente para a plataforma OS/21 . Esta parceria durou até 1994, com o lançamento da versão para Windows NT e desde então a Microsoft faz a manutenção do produto. O SQL Server não é Open Source e para poder utilizar-lo é necessário comprar uma licença da Microsoft. Suas linguagens de consulta primárias são Transact-SQL (T-SQL) e ANSI SQL.\\
     
     O SQL Server tem como principais características:
     \begin{itemize}
@@ -197,6 +197,7 @@ Emails:  \IEEEauthorrefmark{1}caiov@ime.usp.br, \IEEEauthorrefmark{2}reganati@im
       \item Suporte nativo ao XML
       \item Suporte a internacionalização
       \item Suporte a Data Warehouse
+      \item Triggers Recursivas. É possível definir uma profundidade máxima de recursão
     \end{itemize}
 
     \subsubsection{MySQL}
@@ -264,7 +265,13 @@ Emails:  \IEEEauthorrefmark{1}caiov@ime.usp.br, \IEEEauthorrefmark{2}reganati@im
       \caption{Modelagem do banco MS SQL para os testes}
     \end{figure}
 
-  	Em seguida desenvolvemos uma aplicação web que a partir do nome de uma moeda busca no Google a taxa de cambio em relação ao Real. Esse valor já parseado é retornado\footnote{\href{http://trabalho2db.azurewebsites.net/Currency/Get?exchangeRate=}{http://trabalho2db.azurewebsites.net/Currency/Get?exchangeRate=}}.
+  	Em seguida desenvolvemos uma aplicação web que a partir do nome de uma moeda busca a taxa de cambio em relação ao Real. Esse valor já parseado é retornado\footnote{\href{http://trabalho2db.azurewebsites.net/Currency/Get?exchangeRate=}{http://trabalho2db.azurewebsites.net/Currency/Get?exchangeRate=}}.
+
+\begin{figure}[!t]
+      \centering
+  	  \includegraphics[scale=0.65]{img/requisicao.jpg}
+      \caption{Código para em T-SQL para requisição web}
+    \end{figure}
 
   	Criamos o stored procedure AtualizaTaxa, que para toda entrada na tabela Moeda envia o valor seu nome para a aplicação web, e cria uma nova entrada em taxa com seu horário da atualização e valor obtido.
 
@@ -307,7 +314,12 @@ Emails:  \IEEEauthorrefmark{1}caiov@ime.usp.br, \IEEEauthorrefmark{2}reganati@im
     O status da compra fica pendente até o usuário pagar o valor da compra, e nesse caso o status passa para finalizado, ou então até dois dias após o início da transação e nesse caso usamos um job para alterar o status do boleto para cancelado.
 
   \subsection{Conclusão dos testes}
-    
+    Conseguimos concluir a tarefa nos dois SGBDs com ressalva de que com o MySQL não foi possível fazer uma requisição externa diretamente.
+
+	Cada sistema apresenta particularidades, principalmente a sintaxe. Com o MS SQL precisamos usar stored procedures e Jobs além de triggers, já em MySQL foi possível realizar a tarefa usando apenas triggers.
+
+	Constatamos também que com o uso de SGBDs ativos foi possível transferir a lógica da aplicação para o banco de dados.
+
 
 \begin{thebibliography}{1}
 
