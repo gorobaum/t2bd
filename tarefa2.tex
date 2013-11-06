@@ -17,7 +17,7 @@
 \IEEEauthorblockA{Instituto de Matemática e Estatística\\
 Universidade de São Paulo\\
 São Paulo, São Paulo\\
-Emails: \IEEEauthorrefmark{3}manzo@ime.usp.br, \IEEEauthorrefmark{4}thiago.gouveia.nunes@gmail.com}
+Emails:  \IEEEauthorrefmark{1}caiov@ime.usp.br, \IEEEauthorrefmark{2}reganati@ime.usp.br, \IEEEauthorrefmark{3}manzo@ime.usp.br, \IEEEauthorrefmark{4}nunes@ime.usp.br}
 }
 
 \maketitle
@@ -185,36 +185,39 @@ Emails: \IEEEauthorrefmark{3}manzo@ime.usp.br, \IEEEauthorrefmark{4}thiago.gouve
 
 \section{Estudo de caso}
   \subsection{Características técnicas}
-    \subsubsection{SQLServer (Gabriel)}
-O MS SQL Server é um SGBD - sistema gerenciador de Banco de dados relacional desenvolvido pela Microsoft. Foi criado em parceria com a Sybase em 1988 inicialmente para a plataforma OS/21 . Esta parceria durou até 1994, com o lançamento da versão para Windows NT e desde então a Microsoft faz a manutenção do produto. O SQL Server não é Open Source e para poder utilizar-lo é necessário comprar uma licença da Microsoft. Suas linguagens de consulta primárias são T-SQL e ANSI SQL.\\
-	O SQL Server tem como principais características:
-\begin{itemize}
-\item Funciona no sistema operacional Windows
-\item Tem como tamanho máximo de banco de dados como 524 TB  e tamanho máximo de tabela como 524 TB
-\item Suporte a multi-threads
-\item A interface Connector/ODBC fornece ao SQL Server suporte a programas clientes que usam conexão ODBC (Open-DataBase-Connectivity).
-\item Suporte nativo ao XML
-\item Suporte a internacionalização
-\item Suporte a Data Warehouse
-\end{itemize}
+    \subsubsection{SQLServer }
+    O MS SQL Server é um SGBD - sistema gerenciador de Banco de dados relacional desenvolvido pela Microsoft. Foi criado em parceria com a Sybase em 1988 inicialmente para a plataforma OS/21 . Esta parceria durou até 1994, com o lançamento da versão para Windows NT e desde então a Microsoft faz a manutenção do produto. O SQL Server não é Open Source e para poder utilizar-lo é necessário comprar uma licença da Microsoft. Suas linguagens de consulta primárias são T-SQL e ANSI SQL.\\
+    
+    O SQL Server tem como principais características:
+    \begin{itemize}
+    \item Funciona no sistema operacional Windows
+    \item Tem como tamanho máximo de banco de dados como 524 TB  e tamanho máximo de tabela como 524 TB
+    \item Suporte a multi-threads
+    \item A interface Connector/ODBC fornece ao SQL Server suporte a programas clientes que usam conexão ODBC (Open-DataBase-Connectivity).
+    \item Suporte nativo ao XML
+    \item Suporte a internacionalização
+    \item Suporte a Data Warehouse
+    \end{itemize}
 
-    \subsubsection{MySQL (Gabriel)}
-	MySQL é o mais popular sistema de gerenciamento de banco de dados SQL Open Source, é desenvolvido, distribuído e tem suporte da MySQL AB. A MySQL AB é uma empresa comercial, fundada pelos desenvolvedores do MySQL, cujos negócios é fornecer serviços relacionados ao sistema de gerenciamento de banco de dados MySQL\\
-	O MySQL tem como principais características:
-\begin{itemize}
-\item Escrito em C e C++.
-\item Funciona em diversas plataformas, como Windows, Linux 2.0+, OpenBSD, FreeBSD, SunOS 4.x e outros
-\item Utiliza o GNU Automake, Autoconf, e Libtool para portabilidade.
-\item Suporte total a multi-threads usando threads diretamente no kernel. Isto significa que se pode facilmente usar múltiplas CPUs, se disponível.
-\item Completo suporte a operadores e funções da linguagem SQL para consultas e funções
-\item Um sistema de privilégios e senhas que é muito flexível, seguro e que permite verificação baseada em estações/máquinas. Senhas são seguras porque todo o tráfico de senhas é criptografado quando você se conecta ao servidor.
-\item Os clientes podem se conectar ao servidor MySQL usando sockets TCP/IP, em qualquer plataforma.
-\item A interface Connector/ODBC fornece ao MySQL suporte a programas clientes que usam conexão ODBC (Open-DataBase-Connectivity). 
-\item O servidor pode apresentar mensagem de erros aos clientes em várias línguas. 
-\item Suporte total para vários conjuntos de caracteres, que incluem ISO-8859-1 (Latin1), big5, ujis e mais.
-\item Tem como tamanho máximo de banco de dados como ilimitado e tamanho máximo de tabela como 256 TB
-\end{itemize}
+    \subsubsection{MySQL}
+	  MySQL é o mais popular sistema de gerenciamento de banco de dados SQL Open Source, é desenvolvido, distribuído e tem suporte da MySQL AB. A MySQL AB é uma empresa comercial, fundada pelos desenvolvedores do MySQL, cujos negócios é fornecer serviços relacionados ao sistema de gerenciamento de banco de dados MySQL\\
+	  
+    O MySQL tem como principais características:
+    \begin{itemize}
+    \item Escrito em C e C++.
+    \item Funciona em diversas plataformas, como Windows, Linux 2.0+, OpenBSD, FreeBSD, SunOS 4.x e outros
+    \item Utiliza o GNU Automake, Autoconf, e Libtool para portabilidade.
+    \item Suporte total a multi-threads usando threads diretamente no kernel. Isto significa que se pode facilmente usar múltiplas CPUs, se disponível.
+    \item Completo suporte a operadores e funções da linguagem SQL para consultas e funções
+    \item Um sistema de privilégios e senhas que é muito flexível, seguro e que permite verificação baseada em estações/máquinas. Senhas são seguras porque todo o tráfico de senhas é criptografado quando você se conecta ao servidor.
+    \item Os clientes podem se conectar ao servidor MySQL usando sockets TCP/IP, em qualquer plataforma.
+    \item A interface Connector/ODBC fornece ao MySQL suporte a programas clientes que usam conexão ODBC (Open-DataBase-Connectivity). 
+    \item O servidor pode apresentar mensagem de erros aos clientes em várias línguas. 
+    \item Suporte total para vários conjuntos de caracteres, que incluem ISO-8859-1 (Latin1), big5, ujis e mais.
+    \item Tem como tamanho máximo de banco de dados como ilimitado e tamanho máximo de tabela como 256 TB
+    \end{itemize}
 
+    A consideração e execução de regras ativas depende do tempo de execução definido para a trigger. Caso seja utilizada a clásula \textit{BEFORE} na \textit{trigger}, a consideração é feita antes da transação, enquanto que no caso de \textit{AFTER} ela é feita após a transação. Já a execução é sempre imediata.\cite{caracteristica-myssql}
 
   \subsection{Cenário}
     \subsubsection{O Problema} Ao se deparar com a criação de um sistema web o qual realizaria a venda de papel moeda e cartões pré-pagos internacionais pela internet, teve-se que pensar em como fazer a atualização das taxas de moedas a serem vendidas a partir de um serviço externo com atualizações periódicas, que consistem de chamadas bastante demoradas tanto pelo volume de dados quanto pelo tempo de resposta do serviço externo.\\
@@ -243,42 +246,57 @@ O MS SQL Server é um SGBD - sistema gerenciador de Banco de dados relacional de
 
     Por fim, a relação Moeda contém apenas o nome desta e sua id.
 
-
-
     \subsubsection{SQLServer (Caio e Gabriel)}
-	Usamos a ferramenta SQL Server Management Studio para trabalhar com SQL Server.			
-	Decidimos seguir o mesmo padrão usado na resolução do problema com MySQL, segue o diagrama das tabelas:
- 
-	\includegraphics[scale=0.7]{img/tabela.jpg} 
+  	Usamos a ferramenta SQL Server Management Studio para trabalhar com SQL Server.			
+  	Decidimos seguir o mesmo padrão usado na resolução do problema com MySQL, segue o diagrama das tabelas:
+   
+    \begin{figure}[!t]
+      \centering
+  	  \includegraphics[scale=0.65]{img/tabela.jpg}
+      \caption{Modelagem do banco MS SQL para os testes}
+    \end{figure}
 
-	Em seguida desenvolvemos uma aplicação web que a partir do nome de uma moeda busca no Google a taxa de cambio em relação ao Real. Esse valor já parseado é retornado. Segue o link:\\ \\
-	\href{http://trabalho2db.azurewebsites.net/Currency/Get?exchangeRate=}{http://trabalho2db.azurewebsites.net/Currency/Get?exchangeRate=} \\ \\
-	Exemplo de uso:\href{http://trabalho2db.azurewebsites.net/Currency/Get?exchangeRate=USD}{http://trabalho2db.azurewebsites.net/Currency/Get?exchangeRate=USD} \\ \\
+  	Em seguida desenvolvemos uma aplicação web que a partir do nome de uma moeda busca no Google a taxa de cambio em relação ao Real. Esse valor já parseado é retornado\footnote{\href{http://trabalho2db.azurewebsites.net/Currency/Get?exchangeRate=}{http://trabalho2db.azurewebsites.net/Currency/Get?exchangeRate=}}.
 
-	Criamos o stored procedure AtualizaTaxa, que para toda entrada na tabela Moeda envia o valor seu nome para a aplicação web, e cria uma nova entrada em taxa com seu horário da atualização e valor obtido.
+  	Criamos o stored procedure AtualizaTaxa, que para toda entrada na tabela Moeda envia o valor seu nome para a aplicação web, e cria uma nova entrada em taxa com seu horário da atualização e valor obtido.
 
-	O próximo passo foi criar o stored procedure AtualizaTaxaDeCambio para associar as taxas de todas as moedas que foram obtidas mais recentemente em todas as possíveis combinações de origens e destinos, por exemplo supondo que temos no banco de dados a taxa das seguintes moedas: USD, EUR e BRL vamos obter em Cambio as seguintes combinações: USD-USD, USD-EUR, USD-BRL, EUR-USD, EUR-EUR, EUR-BRL, BRL-USD, BRL-EUR, BRL-BRL.
+  	O próximo passo foi criar o stored procedure AtualizaTaxaDeCambio para associar as taxas de todas as moedas que foram obtidas mais recentemente em todas as possíveis combinações de origens e destinos, por exemplo supondo que temos no banco de dados a taxa das seguintes moedas: USD, EUR e BRL vamos obter em Cambio as seguintes combinações: USD-USD, USD-EUR, USD-BRL, EUR-USD, EUR-EUR, EUR-BRL, BRL-USD, BRL-EUR, BRL-BRL.
 
-	Os dois stored procedures acima são executados de cinco em cinco minutos. SQL Server não suporta triggers temporais diretamente, mas podemos fazer uma construção equivalente usando Jobs. 
+  	Os dois stored procedures acima são executados de cinco em cinco minutos. SQL Server não suporta triggers temporais diretamente, mas podemos fazer uma construção equivalente usando Jobs. 
 
-	\includegraphics[scale=0.45]{img/job1.jpg} 
+    \begin{figure}[!t]
+      \centering
+  	  \includegraphics[scale=0.45]{img/job1.jpg}
+      \caption{Primeiro passo da criação de uma job MS SQL}
+    \end{figure}
 
-	Jobs são conjuntos de operações. Um job pode executar diversas atividades, incluindo scripts T-SQL ou queries. Ao final de cada atividade sabemos se a atividade foi bem sucedida ou mal sucedida, a partir disso podemos definir um fluxo de execução para o job.
-	
-	\includegraphics[scale=0.45]{img/job2.jpg} 
+  	Jobs são conjuntos de operações. Um job pode executar diversas atividades, incluindo scripts T-SQL ou queries. Ao final de cada atividade sabemos se a atividade foi bem sucedida ou mal sucedida, a partir disso podemos definir um fluxo de execução para o job.
+  	
+    \begin{figure}[!t]
+      \centering
+  	  \includegraphics[scale=0.45]{img/job2.jpg}
+      \caption{Segundo passo da criação de uma job MS SQL}
+    \end{figure}
 
-	Jobs podem ser escalonados para executarem em algum horário ou alguma frequência desejada.
+  	Jobs podem ser escalonados para executarem em algum horário ou alguma frequência desejada.
 
-	\includegraphics[scale=0.45]{img/job3.jpg}
+    \begin{figure}[!t]
+      \centering
+  	  \includegraphics[scale=0.45]{img/job3.jpg}
+      \caption{Terceiro passo da criação de uma job MS SQL}
+    \end{figure}
 
-	Note que além de podermos criar um job usando a IDE, podemos também fazer por meio de código.
+  	Note que além de podermos criar um job usando a IDE, podemos também fazer por meio de código.
 
-	Quando o usuário realiza uma compra, é especificado o valor em moedas destino que deseja comprar, usando essa informação e as informações de cambio mais recentes podemos calcular o valor da compra usando um trigger:
+  	Quando o usuário realiza uma compra, é especificado o valor em moedas destino que deseja comprar, usando essa informação e as informações de cambio mais recentes podemos calcular o valor da compra usando um trigger:
 
-	\includegraphics[scale=0.6]{img/trigger.jpg} 
+    \begin{figure}[!t]
+      \centering
+  	  \includegraphics[scale=0.6]{img/trigger.jpg}
+      \caption{Descrição do trigger em MS SQL para atualizar os valores de boleto}
+    \end{figure} 
 
-O status da compra fica pendente até o usuário pagar o valor da compra, e nesse caso o status passa para finalizado, ou então até dois dias após o início da transação e nesse caso usamos um job para alterar o status do boleto para cancelado.
-
+    O status da compra fica pendente até o usuário pagar o valor da compra, e nesse caso o status passa para finalizado, ou então até dois dias após o início da transação e nesse caso usamos um job para alterar o status do boleto para cancelado.
 
   \subsection{Resultados}
     \subsubsection{MySQL (Manzo \& Gordo)}
@@ -286,15 +304,20 @@ O status da compra fica pendente até o usuário pagar o valor da compra, e ness
 
 \begin{thebibliography}{1}
 
-\bibitem{Practical Applications of Triggers and Constraints: Successes and Lingering Issues}
-S. Ceri, R. J. Cochrane, J Widom, \textit{Practical Applications of Triggers and Constraints: Successes and Lingering Issues}, VLDB conference, Cairo Egypt. 2000.
+  \bibitem{Practical Applications of Triggers and Constraints: Successes and Lingering Issues}
+  S. Ceri, R. J. Cochrane, J Widom, \textit{Practical Applications of Triggers and Constraints: Successes and Lingering Issues}, VLDB conference, Cairo Egypt. 2000.
 
-\bibitem{sweedish-article}
-M. Minock, J. Mollevik and M. \r{A}sander, \textit{Toward an Active Database Platform for Guiding Urban Pedestrians}. Ume\r{a}, Sweden: University of Ume\r{a}, 2012.
-\bibitem{mysql-site}
-http://ftp.nchu.edu.tw/MySQL/doc/refman/4.1/pt/
-\bibitem{sql-server-site}
-http://msdn.microsoft.com/en-us/library/cc645993.aspx
+  \bibitem{sweedish-article}
+  M. Minock, J. Mollevik and M. \r{A}sander, \textit{Toward an Active Database Platform for Guiding Urban Pedestrians}. Ume\r{a}, Sweden: University of Ume\r{a}, 2012.
+
+  \bibitem{mysql-site}
+  http://ftp.nchu.edu.tw/MySQL/doc/refman/4.1/pt/
+
+  \bibitem{sql-server-site}
+  http://msdn.microsoft.com/en-us/library/cc645993.aspx
+
+  \bibitem{caracteristica-myssql}
+  http://www.cs.duke.edu/csl/docs/mysql-refman/triggers.html
 \end{thebibliography}
 
 \end{document}
