@@ -201,8 +201,7 @@ Emails:  \IEEEauthorrefmark{1}caiov@ime.usp.br, \IEEEauthorrefmark{2}reganati@im
       \item Suporte a cryptografia
     \end{itemize}
 
-
-	Há dois tipos de consideração em SQL Server, AFTER e INSTEAD OF. AFTER não é executado até que as mudanças que o dispararam tenham feitos suas modificações nos dados, já o INSTEAD OF é executado após a criação das tabelas inserted (NEW) e deleted (OLD) forem criadas, mas antes de outras ações.\cite{caracteristica-mssql} \cite{caracteristica-mssql2}
+	  Há dois tipos de consideração em SQL Server, AFTER e INSTEAD OF. AFTER não é executado até que as mudanças que o dispararam tenham feitos suas modificações nos dados, já o INSTEAD OF é executado após a criação das tabelas inserted (NEW) e deleted (OLD) forem criadas, mas antes de outras ações.\cite{caracteristica-mssql} \cite{caracteristica-mssql2}
 
     \subsubsection{MySQL}
 	  MySQL é o mais popular sistema de gerenciamento de banco de dados SQL Open Source, é desenvolvido, distribuído e tem suporte da MySQL AB. A MySQL AB é uma empresa comercial, fundada pelos desenvolvedores do MySQL, cujos negócios é fornecer serviços relacionados ao sistema de gerenciamento de banco de dados MySQL\cite{mysql-site}\\
@@ -271,7 +270,7 @@ Emails:  \IEEEauthorrefmark{1}caiov@ime.usp.br, \IEEEauthorrefmark{2}reganati@im
 
   	Em seguida desenvolvemos uma aplicação web que a partir do nome de uma moeda busca a taxa de cambio em relação ao Real. Esse valor já parseado é retornado\footnote{\href{http://trabalho2db.azurewebsites.net/Currency/Get?exchangeRate=}{http://trabalho2db.azurewebsites.net/Currency/Get?exchangeRate=}}.
 
-\begin{figure}[!t]
+    \begin{figure}[!t]
       \centering
   	  \includegraphics[scale=0.65]{img/requisicao.jpg}
       \caption{Código para em T-SQL para requisição web}
@@ -318,12 +317,18 @@ Emails:  \IEEEauthorrefmark{1}caiov@ime.usp.br, \IEEEauthorrefmark{2}reganati@im
     O status da compra fica pendente até o usuário pagar o valor da compra, e nesse caso o status passa para finalizado, ou então até dois dias após o início da transação e nesse caso usamos um job para alterar o status do boleto para cancelado.
 
   \subsection{Conclusão dos testes}
-    Conseguimos concluir a tarefa nos dois SGBDs com ressalva de que com o MySQL não foi possível fazer uma requisição externa diretamente.
+  Conseguimos concluir a tarefa nos dois SGBDs com ressalva de que com o MySQL não foi possível fazer uma requisição externa diretamente.
 
 	Cada sistema apresenta particularidades, principalmente a sintaxe. Com o MS SQL precisamos usar stored procedures e Jobs além de triggers, já em MySQL foi possível realizar a tarefa usando apenas triggers.
 
 	Constatamos também que com o uso de SGBDs ativos foi possível transferir a lógica da aplicação para o banco de dados.
 
+\section{Conclusão}
+Esperamos com este artigo ter demonstrado o poder que regras ativas possuem, sendo capaz desde produzir um sistema de navegação até atualizar cotações de moeda rapidamente.
+
+Da mesma forma, foi no artigo foi aprofundada a teoria sobre regras ativas com detalhes do modelo ECA, classificação do tipo quanto a sua origem e mais.
+
+Por fim, o estudo de caso demonstrou como se implementar em dois sistemas gerenciadores bastante diferentes que foram o MS SQL e MySQL.
 
 \begin{thebibliography}{1}
 
