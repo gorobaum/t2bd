@@ -29,25 +29,31 @@ Emails:  \IEEEauthorrefmark{1}caiov@ime.usp.br, \IEEEauthorrefmark{2}reganati@im
   ativos é possível detectar modificações no banco de dados ou criar regras de monitoramento com base no tempo para controlar as transações que modificam o banco de dados. As grande vantagens
   de utilizar um sistema ativo dentro do banco de dados é:
   \begin{itemize}
-    \item O ganho de eficiência, já que antes essas operações teriam que ficar na aplicação e agora são executadas dentro do SGBD. \\
+    \item O ganho de eficácia, já que antes essas operações teriam que ficar na aplicação e agora são executadas dentro do SGBD. \\
     \item Agora o administrador de banco de dados pode ficar responsável em criar e manter essas regras, programando na mesma linguagem usada dentro do SGBD.\\
     \item Ao criar uma regra, ela fica dentro do banco de dados, onde outros usuários e aplicações podem acessá-la.
   \end{itemize}
-  Atualmente vários banco de dados utilizados em larga escala comercialmente implementam de alguma forma o paradigma ativo. A \textit{Tabela III} mostra as principais ferramentas que implementam
-  esse paradigma. A maioria dos SGBD modernos utiliza o conceito de \textit{Trigger} para criar uma regra ativa, que são detalhados na seção Estado da Arte.
+  Atualmente vários banco de dados utilizados em larga escala comercialmente implementam de alguma forma o paradigma ativo. A \textit{Tabela III} mostra as principais ferramentas que implementam esse paradigma. A maioria dos SGBD modernos utilizam o conceito de \textit{Trigger} para criar uma regra ativa, que são detalhados na seção Estado da Arte.
 
   \subsection{Conceitos}
-	Veremos adiante na seção “Practical Applications of Triggers and Constraints: Successes and Lingering Issues”, uma breve descrição do porquê surgiram os bancos de dados ativos, alguns conceitos como o modelo ECA, Event Condition Action, que serve como base para o uso de bancos de dados ativos, uma classificação de triggers por como eles foram criados e onde atuam, veremos também uma forma de classificação que se baseia na funcionalidade do trigger. 
+	Veremos adiante na seção \textit{Practical Applications of Triggers and Constraints: Successes and Lingering Issues} (\ref{subsubsec: article1}), uma breve descrição do porquê surgiram os bancos de dados ativos, alguns conceitos como o modelo ECA, Evento Condição Ação (\textit{Event Condition Action}), que serve como base para o uso de bancos de dados ativos, uma classificação de \textit{triggers} de acordo com a sua criação e atuação, veremos também uma forma de classificação que se baseia na funcionalidade do \textit{trigger}.
 
 \section{Estado da arte}
   \subsection{Trabalhos científicos}
-    \subsubsection{Practical Applications of Triggers and Constraints: Successes and Lingering Issues}
+    \subsubsection{Practical Applications of Triggers and Constraints: Successes and Lingering Issues}\label{subsubsec: article1}
     
-    Triggers são baseadas no modelo ECA (Event Condition Action), quando um evento ocorre e alguma condição associada é verdadeira, executamos uma ação. Em relação ao seu comportamento, podemos definir muitas coisas como, sua granularidade, o trigger age em nível de linha ou tabela, a ordem da ação, ou seja se a ação deve ser executada antes, depois ou ao invés do evento que o disparou. As condições e funções são definidas arbitrariamente. Note que podemos utilizar os valores que existiam antes do evento ser disparado e depois.
+    \textit{Triggers} são baseadas no modelo ECA, quando um evento ocorre e alguma condição associada é verdadeira, executamos uma ação. Em relação ao seu comportamento, podemos definir muitas coisas como:
+  
+    \begin{itemize}
+      \item \textbf{granularidade}: o \textit{trigger} age em nível de linha ou tabela;
+      \item \textbf{ordem da ação}: se a ação deve ser executada antes, depois ou ao invés do evento que o disparou.
+    \end{itemize}
+  
+    As condições e funções são definidas arbitrariamente. Note que podemos utilizar os valores que existiam antes do evento ser disparado e depois.
 
-    Triggers surgiram como uma forma de reação automática a violações de restrições de integridade, e logo foram generalizados para realização de outras tarefas, se tornando o modelo ECA que temos hoje. Os primeiros produtos que suportavam triggers surgiram no começo da década de 90, hoje em dia todos os vendedores de SGBDs relacionais tem suporte a triggers.
+    \textit{Triggers} surgiram como uma forma de reação automática a violações de restrições de integridade, e logo foram generalizados para realização de outras tarefas, se tornando o modelo ECA que temos hoje. Os primeiros produtos que suportavam triggers surgiram no começo da década de 90, hoje em dia todos os fornecedores de SGBDs relacionais tem suporte a \textit{triggers}.
 
-    Podemos ver uma classificação de triggers na Tabela I.
+    Podemos ver uma classificação de \textit{triggers} na \textit{Tabela I}.
 
  \begin{table*}[!t]
     \renewcommand{\arraystretch}{1}
@@ -72,14 +78,15 @@ Emails:  \IEEEauthorrefmark{1}caiov@ime.usp.br, \IEEEauthorrefmark{2}reganati@im
     \end{table*}
 
     \begin{itemize}
-        \item{Handcrafted}: São triggers criados por algum programador.
-        \item{Generated}: Triggers gerados automaticamente
-        \item{Kernel}: Triggers escritos no Kernel, para não esbarrar em problemas de segurança ou então melhorar a performance
-        \item{Services}: Serviços que tem como proposito prover ou melhorar alguma funcionalidade do SGBD
-        \item{External}: Estão fora do banco de dados, fazem acesso ou se comunicam por meio de alguma API
+        \item{Handcrafted}: São triggers criados por algum programador;
+        \item{Generated}: Triggers gerados automaticamente;
+        \item{Kernel}: Triggers escritos no Kernel, para não esbarrar em problemas de segurança ou então melhorar a performance;
+        \item{Services}: Serviços que tem como proposito prover ou melhorar alguma funcionalidade do SGBD;
+        \item{External}: Estão fora do banco de dados, fazem acesso ou se comunicam por meio de alguma API;
     \end{itemize}
 
-    Podemos ainda classificar os triggers em relação a sua função, como pode ser visto na Tabela II.
+    Podemos ainda classificar os \textit{triggers} em relação a sua função, como pode ser visto na \textit{Tabela II}.
+
  \begin{table*}[!t]
     \renewcommand{\arraystretch}{1}
     \caption{Classificação de triggers por função}
@@ -116,9 +123,9 @@ Emails:  \IEEEauthorrefmark{1}caiov@ime.usp.br, \IEEEauthorrefmark{2}reganati@im
         \end{tabular}
     \end{table*}
 
-    A grande vantagem do uso de triggers é a possibilidade de mover a lógica e regras de negócio da aplicação para o banco de dados.
+    A grande vantagem do uso de \textit{triggers} é a possibilidade de mover a lógica e regras de negócio da aplicação para o banco de dados.
 
-    Algumas das reclamações estão relacionadas a expressividade dos triggers. Há certos problemas de padronização, comportamentos particulares de cada SGBD podem ter grande impacto nos resultados finais. Além disso não há falta de ferramentas que ajudem na análise de triggers, esse é um dos motivos que levou o crescimento de triggers gerados automaticamente. Muitos triggers, ou triggers complexos deterioram muito a performance.
+    Algumas das reclamações estão relacionadas à expressividade dos \textit{triggers}. Há certos problemas de padronização, como comportamentos particulares de cada SGBD com grande impacto nos resultados finais. Além disso, não há falta de ferramentas que ajudem na análise de \textit{triggers}, esse é um dos motivos que levou o crescimento de triggers gerados automaticamente. Muitos \textit{triggers}, ou \textit{triggers} complexos deterioram muito a performance.
 
     \subsubsection{\textit{Toward an Active Database Platform for Guiding Urban Pedestrians}}
     Utilizando a extensão \textit{PotsGIS} do sistema gerenciador de banco de dados (SGBD) PostgreSQL, que adiciona a capacidade de um tipo de dado para posição geográfica, este estudo da Universidade de Ume\r{a} na Suécia de autoria de Michael Minock, Johan Mollevik and Mattias \r{A}sander, através do uso extensivo de \textit{stored procedures} foi capaz de fornercer instruções de direção a fim de guiar um pedestre em um trajeto.
@@ -134,7 +141,7 @@ Emails:  \IEEEauthorrefmark{1}caiov@ime.usp.br, \IEEEauthorrefmark{2}reganati@im
     Esta implementação obteve boa performance com atraso de resposta médio de 60ms. Quanto à precisão da navegação, os autores foram sinceros em dizer que ainda não está tão preciso quanto soluções a soluções de navegação comerciais. Mas também apontou quais pontos precisam ser melhorados para chegar a este ponto.
 
   \subsection{Ferramentas}
-  Tabela comparativa (arrumar célula F20, tirar function e procedure, filtrar só os principais bancos) (Gordo)
+  Tabela comparativa
   \begin{table*}[!t]
     \renewcommand{\arraystretch}{1}
     \caption{Tabela de Ferramentas}
@@ -185,7 +192,7 @@ Emails:  \IEEEauthorrefmark{1}caiov@ime.usp.br, \IEEEauthorrefmark{2}reganati@im
 
 \section{Estudo de caso}
   \subsection{Características técnicas}
-    \subsubsection{SQLServer }
+    \subsubsection{MS SQL}
     O Microsoft SQL Server é um SGBD - Sistema Gerenciador de Banco de dados relacional desenvolvido pela Microsoft. Em 1988 , a Microsoft lançou a primeira versão do SQL Server. Ele foi projetado para a plataforma OS / 2 e foi desenvolvido conjuntamente pela Microsoft e Sybase. Durante o início da década de 1990 , a Microsoft começou a desenvolver uma nova versão do SQL Server para a plataforma NT. Enquanto ele estava em desenvolvimento , a Microsoft decidiu que o SQL Server deve ser intimamente ligado com o sistema operacional NT. E desde então a Microsoft vem desenvolvendo e melhorando o sistema ano após ano e unicamente para o sistema operacional Windows. O SQL Server não é Open Source e para poder utilizar-lo é necessário comprar uma licença da Microsoft. Suas linguagens de consulta primárias são Transact-SQL (T-SQL) e ANSI SQL.\cite{sql-server-site} \cite{sql-server-site2}\\
     
     O SQL Server tem como principais características:
@@ -209,26 +216,28 @@ Emails:  \IEEEauthorrefmark{1}caiov@ime.usp.br, \IEEEauthorrefmark{2}reganati@im
 	  
     O MySQL tem como principais características:
     \begin{itemize}
-    \item Escrito em C e C++.
-    \item Funciona em diversas plataformas, como Windows, Linux 2.0+, OpenBSD, FreeBSD, SunOS 4.x e outros
-    \item Utiliza o GNU Automake, Autoconf, e Libtool para portabilidade.
-    \item Suporte total a multi-threads usando threads diretamente no kernel. Isto significa que se pode facilmente usar múltiplas CPUs, se disponível.
-    \item Completo suporte a operadores e funções da linguagem SQL para consultas e funções
-    \item Um sistema de privilégios e senhas que é muito flexível, seguro e que permite verificação baseada em estações/máquinas. Senhas são seguras porque todo o tráfico de senhas é criptografado quando você se conecta ao servidor.
-    \item Os clientes podem se conectar ao servidor MySQL usando sockets TCP/IP, em qualquer plataforma.
-    \item A interface Connector/ODBC fornece ao MySQL suporte a programas clientes que usam conexão ODBC (Open-DataBase-Connectivity). 
-    \item O servidor pode apresentar mensagem de erros aos clientes em várias línguas. 
-    \item Suporte total para vários conjuntos de caracteres, que incluem ISO-8859-1 (Latin1), big5, ujis e mais.
-    \item Tem como tamanho máximo de banco de dados como ilimitado e tamanho máximo de tabela como 256 TB
+      \item Escrito em C e C++.
+      \item Funciona em diversas plataformas, como Windows, Linux 2.0+, OpenBSD, FreeBSD, SunOS 4.x e outros
+      \item Utiliza o GNU Automake, Autoconf, e Libtool para portabilidade.
+      \item Suporte total a multi-threads usando threads diretamente no kernel. Isto significa que se pode facilmente usar múltiplas CPUs, se disponível.
+      \item Completo suporte a operadores e funções da linguagem SQL para consultas e funções
+      \item Um sistema de privilégios e senhas que é muito flexível, seguro e que permite verificação baseada em estações/máquinas. Senhas são seguras porque todo o tráfico de senhas é criptografado quando você se conecta ao servidor.
+      \item Os clientes podem se conectar ao servidor MySQL usando sockets TCP/IP, em qualquer plataforma.
+      \item A interface Connector/ODBC fornece ao MySQL suporte a programas clientes que usam conexão ODBC (Open-DataBase-Connectivity). 
+      \item O servidor pode apresentar mensagem de erros aos clientes em várias línguas. 
+      \item Suporte total para vários conjuntos de caracteres, que incluem ISO-8859-1 (Latin1), big5, ujis e mais.
+      \item Tem como tamanho máximo de banco de dados como ilimitado e tamanho máximo de tabela como 256 TB
     \end{itemize}
     A consideração e execução de regras ativas depende do tempo de execução definido para a trigger. Caso seja utilizada a clásula \textit{BEFORE} na \textit{trigger}, a consideração é feita antes da transação, enquanto que no caso de \textit{AFTER} ela é feita após a transação. Já a execução é sempre imediata.\cite{caracteristica-myssql}
 
   \subsection{Cenário}
-    \subsubsection{O Problema} Ao se deparar com a criação de um sistema web o qual realizaria a venda de papel moeda e cartões pré-pagos internacionais pela internet, teve-se que pensar em como fazer a atualização das taxas de moedas a serem vendidas a partir de um serviço externo com atualizações periódicas, que consistem de chamadas bastante demoradas tanto pelo volume de dados quanto pelo tempo de resposta do serviço externo.\\
+    \subsubsection{O Problema}
+    Ao se deparar com a criação de um sistema web o qual realizaria a venda de papel moeda e cartões pré-pagos internacionais pela internet, teve-se que pensar em como fazer a atualização das taxas de moedas a serem vendidas a partir de um serviço externo com atualizações periódicas, que consistem de chamadas bastante demoradas tanto pelo volume de dados quanto pelo tempo de resposta do serviço externo.\\
     Além disso a compra de cambio apresenta uma validade de 2 dias, portanto o banco de dados deveria ser possível cancelar a compra caso não fosse efetuada no período de dois dias.
 
-    \subsubsection{A Solução} Para que a cada requisição de um usuário pela taxa de câmbio de uma moeda não resulte em uma requisição deste tipo para um serviço externo, foi pensada uma tabela de \textit{cache} para as cotações que por é atualizada por meio de regras ativas. Assim, ao invés de acessar um serviço externo, a operação de obter a taxa de câmbio consiste de uma simples consulta a tabela.\\
-    Com o intuito de solucionar o problema da validade foram feitas triggers que façam esse tipo de análise e assim trocando validando ou não a compra.
+    \subsubsection{A Solução}
+    Para que a cada requisição de um usuário pela taxa de câmbio de uma moeda não resulte em uma requisição deste tipo para um serviço externo, foi pensada uma tabela de \textit{cache} para as cotações que por é atualizada por meio de regras ativas. Assim, ao invés de acessar um serviço externo, a operação de obter a taxa de câmbio consiste de uma simples consulta a tabela.\\
+    Com o intuito de solucionar o problema da validade foram feitas \textit{triggers} que façam esse tipo de análise e assim trocando validando ou não a compra.
 
   \subsection{Descição dos testes}
   A fim de aferir as capacidades dos SGBDs SQLServer e MySQL quanto a utilização de regras ativas, e tendo em mente o cenário anteriormente descrito, foram elaborados dois casos de teste a serem realizados em ambas os sistemas:
@@ -280,7 +289,7 @@ Emails:  \IEEEauthorrefmark{1}caiov@ime.usp.br, \IEEEauthorrefmark{2}reganati@im
 
   	O próximo passo foi criar o stored procedure AtualizaTaxaDeCambio para associar as taxas de todas as moedas que foram obtidas mais recentemente em todas as possíveis combinações de origens e destinos, por exemplo supondo que temos no banco de dados a taxa das seguintes moedas: USD, EUR e BRL vamos obter em Cambio as seguintes combinações: USD-USD, USD-EUR, USD-BRL, EUR-USD, EUR-EUR, EUR-BRL, BRL-USD, BRL-EUR, BRL-BRL.
 
-  	Os dois stored procedures acima são executados de cinco em cinco minutos. SQL Server não suporta triggers temporais diretamente, mas podemos fazer uma construção equivalente usando Jobs. 
+  	Os dois stored procedures acima são executados de cinco em cinco minutos. SQL Server não suporta \textit{triggers} temporais diretamente, mas podemos fazer uma construção equivalente usando Jobs. 
 
     \begin{figure}[!t]
       \centering
@@ -319,7 +328,7 @@ Emails:  \IEEEauthorrefmark{1}caiov@ime.usp.br, \IEEEauthorrefmark{2}reganati@im
   \subsection{Conclusão dos testes}
   Conseguimos concluir a tarefa nos dois SGBDs com ressalva de que com o MySQL não foi possível fazer uma requisição externa diretamente.
 
-	Cada sistema apresenta particularidades, principalmente a sintaxe. Com o MS SQL precisamos usar stored procedures e Jobs além de triggers, já em MySQL foi possível realizar a tarefa usando apenas triggers.
+	Cada sistema apresenta particularidades, principalmente a sintaxe. Com o MS SQL precisamos usar stored procedures e Jobs além de \textit{triggers}, já em MySQL foi possível realizar a tarefa usando apenas \textit{triggers}.
 
 	Constatamos também que com o uso de SGBDs ativos foi possível transferir a lógica da aplicação para o banco de dados.
 
@@ -356,8 +365,6 @@ http://searchsqlserver.techtarget.com/feature/Designing-and-implementing-trigger
   \bibitem{caracteristica-mssql2}
 http://msdn.microsoft.com/en-gb/magazine/cc164047.aspx
 
-
 \end{thebibliography}
 
 \end{document}
-
